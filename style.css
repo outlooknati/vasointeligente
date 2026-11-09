@@ -1,0 +1,4790 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap');
+
+/* =========================
+   TOKENS
+========================= */
+
+:root {
+    --fundo-item: #F0F5F2;    
+    --card: #FFFFFF;
+    --texto: #2E2C28;
+    --texto-suave: #4D4B45;    
+    --tinta: #2E2C28;   
+
+    --menta: #DEF8C8;
+    --menta-forte: #9FD8C0;
+    --rosa: #F7D7EB;
+    --pessego: #FFE3CF;
+    --agua: #CFEBFA;
+
+    --fundo-app: #EEF7F2;    
+    --painel: #FFFFFF;         
+    --fio-painel: #D2E8DC;        
+    --painel-atencao: #FFF3EA;  
+    --fundo-acerto: #F3FBF7;    
+    --trilho: #D3E8DD;         
+    --linha-suave: #E0EEE6;       
+    --linha: rgba(30, 59, 62, 0.12);  
+
+    --verde-escuro: #1F4D3D; 
+    --marrom-atencao: #8A4B1E;  
+    --petroleo: #0F4A55;         
+
+    --grad-acao: linear-gradient(135deg, #8BDCF7, #9BE8C6);
+    --sombra-acao: 0 10px 22px rgba(91, 184, 214, 0.28);
+    --sombra-acao-pressionado: 0 4px 10px rgba(91, 184, 214, 0.25);
+
+    --sombra: 0 6px 20px rgba(30, 59, 62, 0.10);
+
+    /* Medidas */
+    --largura: 520px;
+    --gutter: clamp(16px, 5vw, 28px);
+    --nav-altura: 68px;
+
+    --raio-modulo: 28px;
+
+    --raio-folha: 34px 8px 34px 8px;
+    --raio-folha-pequena: 14px 4px 14px 4px;
+    --pad-modulo: clamp(20px, 5.5vw, 28px);
+
+    --item-titulo: clamp(14.5px, 3.8vw, 16px);
+    --item-texto: clamp(12.5px, 3.4vw, 14px);
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    font-family: 'Nunito', sans-serif;
+    color: var(--texto);
+    background-color: var(--fundo-app);
+
+    padding-bottom: calc(var(--nav-altura) + 40px + env(safe-area-inset-bottom, 0px));
+
+    overflow-x: hidden;
+}
+
+a:focus-visible {
+    outline: 3px solid var(--menta-forte);
+    outline-offset: 3px;
+}
+
+
+/* =========================
+   LARGURA DO CONTEÚDO
+========================= */
+
+header,
+main {
+    width: min(100%, var(--largura));
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+
+main {
+    --espaco-secao: clamp(32px, 8vw, 48px);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding-top: max(clamp(16px, 4vw, 24px), env(safe-area-inset-top, 0px));
+}
+
+header .titulo {
+    flex-shrink: 0;
+
+    height: clamp(30px, 8.4vw, 34px);
+    aspect-ratio: 1100 / 154;
+
+    font-size: 0;
+    color: transparent;
+    overflow: hidden;
+
+    background: url('../IMG/logotipo-plantamigo.webp') left center / contain no-repeat;
+}
+
+body:has(main.licao) header .titulo,
+body:has(main.quiz) header .titulo {
+    height: clamp(22px, 6.2vw, 26px);
+}
+
+.configuracoes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+
+    font-size: 0;    
+    color: var(--tinta);
+    text-decoration: none;
+
+    background-color: var(--card);
+    border-radius: var(--raio-folha-pequena);
+    box-shadow: var(--sombra);
+
+    transition: transform 0.2s ease;
+}
+
+.configuracoes::before {
+    content: "";
+
+    width: 26px;
+    height: 26px;
+
+    background-color: currentColor;
+
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' %3E%3Cpath d='M230.1,108.76,198.25,90.62c-.64-1.16-1.31-2.29-2-3.41l-.12-36A104.61,104.61,0,0,0,162,32L130,49.89c-1.34,0-2.69,0-4,0L94,32A104.58,104.58,0,0,0,59.89,51.25l-.16,36c-.7,1.12-1.37,2.26-2,3.41l-31.84,18.1a99.15,99.15,0,0,0,0,38.46l31.85,18.14c.64,1.16,1.31,2.29,2,3.41l.12,36A104.61,104.61,0,0,0,94,224l32-17.87c1.34,0,2.69,0,4,0L162,224a104.58,104.58,0,0,0,34.08-19.25l.16-36c.7-1.12,1.37-2.26,2-3.41l31.84-18.1A99.15,99.15,0,0,0,230.1,108.76ZM128,168a40,40,0,1,1,40-40A40,40,0,0,1,128,168Z' opacity='0.2'/%3E%3Cpath d='M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm109.94-52.79a8,8,0,0,0-3.89-5.4l-29.83-17-.12-33.62a8,8,0,0,0-2.83-6.08,111.91,111.91,0,0,0-36.72-20.67,8,8,0,0,0-6.46.59L128,41.85,97.88,25a8,8,0,0,0-6.47-.6A111.92,111.92,0,0,0,54.73,45.15a8,8,0,0,0-2.83,6.07l-.15,33.65-29.83,17a8,8,0,0,0-3.89,5.4,106.47,106.47,0,0,0,0,41.56,8,8,0,0,0,3.89,5.4l29.83,17,.12,33.63a8,8,0,0,0,2.83,6.08,111.91,111.91,0,0,0,36.72,20.67,8,8,0,0,0,6.46-.59L128,214.15,158.12,231a7.91,7.91,0,0,0,3.9,1,8.09,8.09,0,0,0,2.57-.42,112.1,112.1,0,0,0,36.68-20.73,8,8,0,0,0,2.83-6.07l.15-33.65,29.83-17a8,8,0,0,0,3.89-5.4A106.47,106.47,0,0,0,237.94,107.21Zm-15,34.91-28.57,16.25a8,8,0,0,0-3,3c-.58,1-1.19,2.06-1.81,3.06a7.94,7.94,0,0,0-1.22,4.21l-.15,32.25a95.89,95.89,0,0,1-25.37,14.3L134,199.13a8,8,0,0,0-3.91-1h-.19c-1.21,0-2.43,0-3.64,0a8.1,8.1,0,0,0-4.1,1l-28.84,16.1A96,96,0,0,1,67.88,201l-.11-32.2a8,8,0,0,0-1.22-4.22c-.62-1-1.23-2-1.8-3.06a8.09,8.09,0,0,0-3-3.06l-28.6-16.29a90.49,90.49,0,0,1,0-28.26L61.67,97.63a8,8,0,0,0,3-3c.58-1,1.19-2.06,1.81-3.06a7.94,7.94,0,0,0,1.22-4.21l.15-32.25a95.89,95.89,0,0,1,25.37-14.3L122,56.87a8,8,0,0,0,4.1,1c1.21,0,2.43,0,3.64,0a8,8,0,0,0,4.1-1l28.84-16.1A96,96,0,0,1,188.12,55l.11,32.2a8,8,0,0,0,1.22,4.22c.62,1,1.23,2,1.8,3.06a8.09,8.09,0,0,0,3,3.06l28.6,16.29A90.49,90.49,0,0,1,222.9,142.12Z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' %3E%3Cpath d='M230.1,108.76,198.25,90.62c-.64-1.16-1.31-2.29-2-3.41l-.12-36A104.61,104.61,0,0,0,162,32L130,49.89c-1.34,0-2.69,0-4,0L94,32A104.58,104.58,0,0,0,59.89,51.25l-.16,36c-.7,1.12-1.37,2.26-2,3.41l-31.84,18.1a99.15,99.15,0,0,0,0,38.46l31.85,18.14c.64,1.16,1.31,2.29,2,3.41l.12,36A104.61,104.61,0,0,0,94,224l32-17.87c1.34,0,2.69,0,4,0L162,224a104.58,104.58,0,0,0,34.08-19.25l.16-36c.7-1.12,1.37-2.26,2-3.41l31.84-18.1A99.15,99.15,0,0,0,230.1,108.76ZM128,168a40,40,0,1,1,40-40A40,40,0,0,1,128,168Z' opacity='0.2'/%3E%3Cpath d='M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm109.94-52.79a8,8,0,0,0-3.89-5.4l-29.83-17-.12-33.62a8,8,0,0,0-2.83-6.08,111.91,111.91,0,0,0-36.72-20.67,8,8,0,0,0-6.46.59L128,41.85,97.88,25a8,8,0,0,0-6.47-.6A111.92,111.92,0,0,0,54.73,45.15a8,8,0,0,0-2.83,6.07l-.15,33.65-29.83,17a8,8,0,0,0-3.89,5.4,106.47,106.47,0,0,0,0,41.56,8,8,0,0,0,3.89,5.4l29.83,17,.12,33.63a8,8,0,0,0,2.83,6.08,111.91,111.91,0,0,0,36.72,20.67,8,8,0,0,0,6.46-.59L128,214.15,158.12,231a7.91,7.91,0,0,0,3.9,1,8.09,8.09,0,0,0,2.57-.42,112.1,112.1,0,0,0,36.68-20.73,8,8,0,0,0,2.83-6.07l.15-33.65,29.83-17a8,8,0,0,0,3.89-5.4A106.47,106.47,0,0,0,237.94,107.21Zm-15,34.91-28.57,16.25a8,8,0,0,0-3,3c-.58,1-1.19,2.06-1.81,3.06a7.94,7.94,0,0,0-1.22,4.21l-.15,32.25a95.89,95.89,0,0,1-25.37,14.3L134,199.13a8,8,0,0,0-3.91-1h-.19c-1.21,0-2.43,0-3.64,0a8.1,8.1,0,0,0-4.1,1l-28.84,16.1A96,96,0,0,1,67.88,201l-.11-32.2a8,8,0,0,0-1.22-4.22c-.62-1-1.23-2-1.8-3.06a8.09,8.09,0,0,0-3-3.06l-28.6-16.29a90.49,90.49,0,0,1,0-28.26L61.67,97.63a8,8,0,0,0,3-3c.58-1,1.19-2.06,1.81-3.06a7.94,7.94,0,0,0,1.22-4.21l.15-32.25a95.89,95.89,0,0,1,25.37-14.3L122,56.87a8,8,0,0,0,4.1,1c1.21,0,2.43,0,3.64,0a8,8,0,0,0,4.1-1l28.84-16.1A96,96,0,0,1,188.12,55l.11,32.2a8,8,0,0,0,1.22,4.22c.62,1,1.23,2,1.8,3.06a8.09,8.09,0,0,0,3,3.06l28.6,16.29A90.49,90.49,0,0,1,222.9,142.12Z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.configuracoes:active {
+    transform: scale(0.92);
+}
+
+.configuracoes:focus-visible {
+    outline: 3px solid var(--menta-forte);
+    outline-offset: 3px;
+}
+
+
+/* =========================
+   NAV
+========================= */
+
+nav {
+    position: fixed;
+    z-index: 100;
+
+    left: 50%;
+    bottom: max(14px, env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%);
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+
+    width: min(calc(100% - 32px), 460px);
+    height: var(--nav-altura);
+
+    padding: 6px;
+
+    background-color: rgba(255, 255, 255, 0.92);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+
+    border-radius: 28px;
+    box-shadow: 0 8px 28px rgba(30, 59, 62, 0.16);
+}
+
+nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+
+    min-width: 0;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(12.5px, 3vw, 14px);
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--texto-suave);
+
+    border-radius: 22px;
+
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+nav a::before {
+    content: "";
+    display: block;
+
+    width: 22px;
+    height: 22px;
+
+    background-color: currentColor;
+
+    -webkit-mask: var(--icone-nav) center / contain no-repeat;
+            mask: var(--icone-nav) center / contain no-repeat;
+}
+
+/* Início*/
+nav a:nth-child(1) {
+    --icone-nav: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z'/%3E%3C/svg%3E");
+}
+
+/* Cuidar */
+nav a:nth-child(2) {
+    --icone-nav: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 20h10'/%3E%3Cpath d='M10 20c5.5-2.5.8-6.4 3-10'/%3E%3Cpath d='M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z'/%3E%3Cpath d='M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z'/%3E%3C/svg%3E");
+}
+
+/* Mascote */
+nav a:nth-child(3) {
+    --icone-nav: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M8 14s1.5 2 4 2 4-2 4-2'/%3E%3Cpath d='M9 9h.01'/%3E%3Cpath d='M15 9h.01'/%3E%3C/svg%3E");
+}
+
+/* Aprender */
+nav a:nth-child(4) {
+    --icone-nav: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 7v14'/%3E%3Cpath d='M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z'/%3E%3C/svg%3E");
+}
+
+/* Página atual*/
+nav a[aria-current="page"] {
+    background-color: var(--menta);
+    color: var(--tinta);
+    font-weight: 600;
+}
+
+nav a:active {
+    background-color: var(--rosa);
+}
+
+
+/* =========================
+   TELAS MUITO PEQUENAS
+========================= */
+
+@media (max-width: 340px) {
+    nav {
+        width: calc(100% - 20px);
+    }
+}
+
+
+/* =========================
+   TABLET E TELAS GRANDES
+========================= */
+
+@media (min-width: 700px) {
+
+    :root {
+        --largura: 720px;
+        --gutter: 40px;
+        --nav-altura: 84px;
+
+        --raio-modulo: 32px;
+        --raio-folha: 42px 10px 42px 10px;
+        --raio-folha-pequena: 16px 5px 16px 5px;
+        --pad-modulo: 32px;
+
+        --item-titulo: 22px;
+        --item-texto: 19px;
+    }
+
+    main {
+        --espaco-secao: 56px;
+    }
+
+    header .titulo {
+        height: 44px;
+    }
+
+    body:has(main.licao) header .titulo,
+    body:has(main.quiz) header .titulo {
+        height: 32px;
+    }
+
+    .configuracoes {
+        width: 56px;
+        height: 56px;
+    }
+
+    .configuracoes::before {
+        width: 32px;
+        height: 32px;
+    }
+
+    nav {
+        width: 560px;
+        bottom: 24px;
+        border-radius: 34px;
+        padding: 8px;
+    }
+
+    nav a {
+        font-size: 18px;
+        border-radius: 26px;
+    }
+
+    nav a::before {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+
+/* =========================
+   ACESSIBILIDADE
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+
+/* =========================
+BOTÃO DE AÇÃO PRINCIPAL
+========================= */
+
+#btnRegar,
+.btnPersonalizar,
+.btnComecar,
+.btnQuiz,
+.btnProxima,
+.btnContinuar,
+.botaoSalvarConfiguracao,
+.btnSalvarChapeu {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    color: var(--petroleo);
+    text-decoration: none;
+
+    background: var(--grad-acao);
+    border: none;
+    cursor: pointer;
+
+    box-shadow: var(--sombra-acao);
+
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+#btnRegar:hover,
+.btnPersonalizar:hover,
+.btnComecar:hover,
+.btnQuiz:hover,
+.btnProxima:hover,
+.btnContinuar:hover,
+.botaoSalvarConfiguracao:hover,
+.btnSalvarChapeu:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+#btnRegar:active,
+.btnPersonalizar:active,
+.btnComecar:active,
+.btnQuiz:active,
+.btnProxima:active,
+.btnContinuar:active,
+.botaoSalvarConfiguracao:active,
+.btnSalvarChapeu:active:not(:disabled) {
+    transform: translateY(2px) scale(0.99);
+    box-shadow: var(--sombra-acao-pressionado);
+}
+
+#btnRegar:focus-visible,
+.btnPersonalizar:focus-visible,
+.btnComecar:focus-visible,
+.btnQuiz:focus-visible,
+.btnProxima:focus-visible,
+.btnContinuar:focus-visible,
+.botaoSalvarConfiguracao:focus-visible,
+.btnSalvarChapeu:focus-visible:not(:disabled) {
+    outline: 4px solid var(--tinta);
+    outline-offset: 5px;
+}
+
+/* Desativado */
+#btnRegar:disabled,
+.btnComecar:disabled {
+    cursor: not-allowed;
+    color: var(--texto-suave);
+
+    background: #ECE6DE;
+    box-shadow: none;
+    transform: none;
+}
+
+
+/* Botão grande */
+
+#btnRegar,
+.btnPersonalizar,
+.btnComecar {
+    --btn-altura: clamp(64px, 17vw, 76px);
+    --btn-raio: 24px;
+    --btn-fonte: clamp(18px, 5vw, 21px);
+    --btn-lado: 64px;           
+
+    position: relative;
+
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    min-height: var(--btn-altura);
+    padding: 12px var(--btn-lado);
+
+    font-size: var(--btn-fonte);
+    line-height: 1.25;
+
+    border-radius: var(--btn-raio);
+}
+
+#btnRegar {
+    --btn-altura: clamp(68px, 18vw, 80px);
+    --btn-raio: 26px;
+    --btn-fonte: clamp(21px, 6vw, 25px);
+}
+
+#btnRegar::before,
+.btnPersonalizar::before {
+    content: "";
+
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 44px;
+    height: 44px;
+
+    background-color: rgba(255, 255, 255, 0.65);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+
+    border-radius: 50%;
+}
+
+.btnQuiz,
+.btnProxima,
+.btnContinuar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: clamp(56px, 15vw, 64px);
+    padding: 14px 24px;
+
+    font-size: clamp(18px, 5vw, 22px);
+
+    border-radius: 999px;
+}
+
+
+/* =========================
+   CARD E PAINEL
+========================= */
+
+.explorarPlanta,
+.umidadeInterativa,
+.cuidadosInterativos,
+.explorarCacto,
+.desafioCacto,
+.fotossinteseLicao,
+.conhecendoCactos,
+.cuidadosCacto,
+.perguntaQuiz {
+    background-color: var(--card);
+    border-radius: var(--raio-modulo);
+    box-shadow: var(--sombra);
+    padding: var(--pad-modulo);
+}
+
+.necessidadesPlanta,
+.aguaPlanta,
+.necessidadeAgua,
+.necessidadeLuz,
+.cuidadosImportantes,
+.guiaCacto,
+.tiposCactos,
+.sinaisPlanta {
+    background-color: var(--painel);
+    border-radius: var(--raio-modulo);
+    padding: var(--pad-modulo);
+    box-shadow: 0 0 0 2px var(--fio-painel);
+}
+
+.licao :is(.necessidadesPlanta, .aguaPlanta, .necessidadeAgua, .necessidadeLuz,
+           .cuidadosImportantes, .guiaCacto, .tiposCactos, .sinaisPlanta) h2 {
+    color: var(--petroleo);
+}
+
+
+/* =========================
+   OPÇÃO SELECIONÁVEL EM LINHA
+========================= */
+
+.opcaoUmidade,
+.opcaoCuidado,
+.opcaoQuiz {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    padding: clamp(13px, 3.8vw, 15px) clamp(16px, 4.5vw, 18px);
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(14px, 3.8vw, 15.5px);
+    font-weight: 600;
+    color: var(--texto);
+    text-align: left;
+
+    background-color: var(--fundo-item);
+    border: 2px solid transparent;
+    border-radius: 18px;
+    cursor: pointer;
+
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.12s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.opcaoUmidade,
+.opcaoCuidado {
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.opcaoUmidade:hover:not(:disabled):not(.selecionado),
+.opcaoCuidado:hover:not(:disabled):not(.selecionado),
+.opcaoQuiz:hover:not(:disabled):not(.selecionado) {
+    border-color: rgba(159, 216, 192, 0.6);
+    transform: translateY(-1px);
+}
+
+.opcaoUmidade:focus-visible,
+.opcaoCuidado:focus-visible,
+.opcaoQuiz:focus-visible {
+    outline: 3px solid var(--menta-forte);
+    outline-offset: 2px;
+}
+
+.opcaoUmidade.selecionado,
+.opcaoCuidado.selecionado {
+    background-color: var(--menta-forte);
+    color: var(--verde-escuro);
+}
+
+.iconeUmidade,
+.iconeCuidado {
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    width: clamp(38px, 10vw, 42px);
+    aspect-ratio: 1;
+
+    font-size: clamp(18px, 5vw, 20px);
+
+    background-color: var(--card);
+    border-radius: 50%;
+
+    transition: background-color 0.15s ease;
+}
+
+.opcaoUmidade.selecionado .iconeUmidade,
+.opcaoCuidado.selecionado .iconeCuidado {
+    background-color: rgba(255, 255, 255, 0.55);
+}
+
+.explicacaoUmidade,
+.explicacaoCuidado {
+    flex-basis: 100%;
+    margin-top: 10px;
+    padding-top: 10px;
+
+    border-top: 1px solid rgba(31, 77, 61, 0.15);
+
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(13px, 3.6vw, 14.5px);
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--verde-escuro);
+}
+
+
+/* =========================
+   ACORDEÃO
+========================= */
+
+.detalheCacto,
+.respostaDesafioCacto {
+    background-color: var(--fundo-item);
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.detalheCacto summary,
+.respostaDesafioCacto summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: clamp(13px, 3.8vw, 15px) clamp(16px, 4.5vw, 18px);
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(14px, 3.8vw, 15.5px);
+    font-weight: 600;
+    color: var(--texto);
+
+    list-style: none;
+    cursor: pointer;
+
+    transition: background-color 0.15s ease, color 0.15s ease, border-radius 0.15s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.detalheCacto summary::-webkit-details-marker,
+.respostaDesafioCacto summary::-webkit-details-marker {
+    display: none;
+}
+
+.detalheCacto summary:focus-visible,
+.respostaDesafioCacto summary:focus-visible {
+    outline: 3px solid var(--menta-forte);
+    outline-offset: 2px;
+}
+
+.detalheCacto[open] summary,
+.respostaDesafioCacto[open] summary {
+    background-color: var(--menta-forte);
+    color: var(--verde-escuro);
+    border-radius: 18px 18px 0 0;
+}
+
+.detalheCacto summary::after {
+    content: "+";
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    width: clamp(24px, 6.5vw, 28px);
+    aspect-ratio: 1;
+
+    font-size: clamp(16px, 4.4vw, 18px);
+    font-weight: 700;
+
+    background-color: var(--card);
+    border-radius: 50%;
+
+    transition: transform 0.2s ease, background-color 0.15s ease;
+}
+
+.detalheCacto[open] summary::after {
+    content: "–";
+    background-color: rgba(255, 255, 255, 0.55);
+}
+
+
+/* =========================
+   LISTAS DENTRO DE UM PAINEL
+========================= */
+
+/*em colunas: 1 por linha no celular, 3 lado a lado no tablet*/
+
+.comparacaoLuz,
+.caracteristicasCacto,
+.sinais {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    margin-top: clamp(16px, 4vw, 20px);
+}
+
+.plantaLuz,
+.caracteristicaCacto,
+.sinal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    padding: clamp(16px, 4.5vw, 20px) 4px;
+    text-align: center;
+}
+
+.plantaLuz + .plantaLuz,
+.caracteristicaCacto + .caracteristicaCacto,
+.sinal + .sinal {
+    border-top: 1px solid var(--linha);
+}
+
+.iconePlantaLuz,
+.iconeCaracteristica,
+.sinal > span {
+    font-size: clamp(30px, 8vw, 36px);
+    line-height: 1;
+}
+
+.plantaLuz p,
+.caracteristicaCacto p,
+.sinal p {
+    max-width: 26ch;
+    margin-inline: auto;
+}
+
+.caracteristicaCacto p {
+    max-width: 30ch;
+}
+
+
+/* em linhas: 1 coluna no celular, 2 no tablet */
+
+.listaCuidados,
+.passosCacto {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    margin-top: clamp(16px, 4vw, 20px);
+}
+
+.cuidado,
+.passoCacto {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(12px, 3.6vw, 16px);
+
+    padding: clamp(14px, 4vw, 18px) 4px;
+}
+
+.cuidado + .cuidado,
+.passoCacto + .passoCacto {
+    border-top: 1px solid var(--linha);
+}
+
+.cuidado > span,
+.passoCacto > span {
+    flex-shrink: 0;
+
+    width: clamp(32px, 8.5vw, 38px);
+    text-align: center;
+
+    font-size: clamp(24px, 6.5vw, 30px);
+    line-height: 1;
+}
+
+.cuidado p,
+.passoCacto p {
+    margin-top: 2px;
+}
+
+
+:is(.plantaLuz, .caracteristicaCacto, .sinal, .cuidado, .passoCacto,
+    .necessidadeCacto, .tipoCacto, .plantaNecessidade) h3 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: var(--item-titulo);
+    font-weight: 600;
+    color: var(--tinta);
+}
+
+:is(.plantaLuz, .caracteristicaCacto, .sinal, .cuidado, .passoCacto,
+    .necessidadeCacto, .tipoCacto, .plantaNecessidade) p {
+    font-size: var(--item-texto);
+    line-height: 1.4;
+    color: var(--texto-suave);
+}
+
+/* =========================
+   CARD SELECIONÁVEL (cadastro)
+========================= */
+
+.cardPlanta,
+.cardMascote,
+.cardIrrigacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-family: inherit;
+    text-align: center;
+    color: inherit;
+
+    background-color: var(--card);
+    border: 2px solid transparent;
+    box-shadow: var(--sombra);
+    cursor: pointer;
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.cardPlanta:hover,
+.cardMascote:hover,
+.cardIrrigacao:hover {
+    transform: translateY(-2px);
+}
+
+.cardPlanta:active,
+.cardMascote:active,
+.cardIrrigacao:active {
+    transform: translateY(0);
+}
+
+.cardPlanta:focus-visible,
+.cardMascote:focus-visible,
+.cardIrrigacao:focus-visible {
+    outline: 3px solid var(--menta-forte);
+    outline-offset: 3px;
+}
+
+.cardPlanta.selecionado,
+.cardMascote.selecionado,
+.cardIrrigacao.selecionado {
+    border-color: var(--menta-forte);
+    background-color: var(--fundo-acerto);
+    box-shadow: 0 0 0 4px rgba(159, 216, 192, 0.25), var(--sombra);
+}
+
+.cardPlanta.selecionado::after,
+.cardMascote.selecionado::after,
+.cardIrrigacao.selecionado::after {
+    content: "✓";
+
+    display: grid;
+    place-items: center;
+
+    width: 22px;
+    height: 22px;
+    margin-top: 2px;
+
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+
+    background-color: var(--menta-forte);
+    border-radius: 50%;
+}
+
+
+/* =========================
+   MASCOTE
+========================= */
+
+.mascote-img {
+    grid-column: 1;
+    grid-row: 1;
+
+    width: min(58vw, 32dvh, 280px);
+    height: auto;
+    object-fit: contain;
+
+    animation: flutuar 4.5s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+}
+
+
+/* =========================
+   TABLET E TELAS GRANDES
+========================= */
+
+@media (min-width: 700px) {
+
+    #btnRegar,
+    .btnPersonalizar,
+    .btnComecar {
+        --btn-altura: 88px;
+        --btn-raio: 30px;
+        --btn-fonte: 26px;
+        --btn-lado: 92px;
+    }
+
+    #btnRegar {
+        --btn-altura: 92px;
+        --btn-raio: 32px;
+        --btn-fonte: 29px;
+    }
+
+    #btnRegar::before,
+    .btnPersonalizar::before {
+        left: 22px;
+
+        width: 56px;
+        height: 56px;
+
+        background-size: 28px;
+    }
+
+    .btnQuiz,
+    .btnProxima,
+    .btnContinuar {
+        min-height: 68px;
+        max-width: 320px;
+        margin-inline: auto;
+
+        font-size: 24px;
+    }
+
+    .opcaoUmidade,
+    .opcaoCuidado,
+    .opcaoQuiz {
+        padding: 16px 20px;
+        font-size: 18px;
+        border-radius: 20px;
+    }
+
+    .detalheCacto summary,
+    .respostaDesafioCacto summary {
+        padding: 16px 20px;
+        font-size: 22px;
+    }
+
+    .comparacaoLuz,
+    .caracteristicasCacto,
+    .sinais {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .plantaLuz,
+    .caracteristicaCacto,
+    .sinal {
+        padding: 22px 16px;
+    }
+
+    .plantaLuz + .plantaLuz,
+    .caracteristicaCacto + .caracteristicaCacto,
+    .sinal + .sinal {
+        border-top: none;
+        border-left: 1px solid var(--linha);
+    }
+
+    .iconePlantaLuz,
+    .iconeCaracteristica,
+    .sinal > span {
+        font-size: 38px;
+    }
+
+    .listaCuidados,
+    .passosCacto {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 28px;
+    }
+
+    .cuidado + .cuidado,
+    .passoCacto + .passoCacto {
+        border-top: none;
+    }
+
+    .cuidado:nth-child(n+3),
+    .passoCacto:nth-child(n+3) {
+        border-top: 1px solid var(--linha);
+    }
+
+    /* Mascote */
+    .mascote-img {
+        width: min(40dvh, 380px);
+    }
+}
+
+
+/*icones */
+
+.icone {
+    display: inline-block;
+    flex-shrink: 0;
+
+    width: 1em;
+    height: 1em;
+
+    background-color: currentColor;
+
+    -webkit-mask: var(--icone) no-repeat center / contain;
+            mask: var(--icone) no-repeat center / contain;
+}
+
+.icone-planta { --icone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M138.54,149.46C106.62,96.25,149.18,43.05,239.63,48.37,245,138.82,191.75,181.39,138.54,149.46ZM16.26,88.26c-3.8,64.61,34.21,95,72.21,72.21C111.27,122.47,80.87,84.46,16.26,88.26Z' opacity='0.2'/%3E%3Cpath d='M247.63,47.89a8,8,0,0,0-7.52-7.52c-51.76-3-93.32,12.74-111.18,42.22-11.8,19.48-11.78,43.16-.16,65.74a71.37,71.37,0,0,0-14.17,26.95L98.33,159c7.82-16.33,7.52-33.36-1-47.49C84.09,89.73,53.62,78,15.79,80.27a8,8,0,0,0-7.52,7.52c-2.23,37.83,9.46,68.3,31.25,81.5A45.82,45.82,0,0,0,63.44,176,54.58,54.58,0,0,0,87,170.33l25,25V224a8,8,0,0,0,16,0V194.51a55.61,55.61,0,0,1,12.27-35,73.91,73.91,0,0,0,33.31,8.4,60.9,60.9,0,0,0,31.83-8.86C234.89,141.21,250.67,99.65,247.63,47.89ZM86.06,146.74l-24.41-24.4a8,8,0,0,0-11.31,11.31l24.41,24.41c-9.61,3.18-18.93,2.39-26.94-2.46C32.47,146.31,23.79,124.32,24,96c28.31-.25,50.31,8.47,59.6,23.81C88.45,127.82,89.24,137.14,86.06,146.74Zm111.06-1.36c-13.4,8.11-29.15,8.73-45.15,2l53.69-53.7a8,8,0,0,0-11.31-11.32L140.65,136c-6.76-16-6.15-31.76,2-45.15,13.94-23,47-35.8,89.33-34.83C232.94,98.34,220.14,131.44,197.12,145.38Z'/%3E%3C/svg%3E"); }
+.icone-gota { --icone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M208,144a80,80,0,0,1-160,0c0-72,80-128,80-128S208,72,208,144Z' opacity='0.2'/%3E%3Cpath d='M174,47.75a254.19,254.19,0,0,0-41.45-38.3,8,8,0,0,0-9.18,0A254.19,254.19,0,0,0,82,47.75C54.51,79.32,40,112.6,40,144a88,88,0,0,0,176,0C216,112.6,201.49,79.32,174,47.75ZM128,216a72.08,72.08,0,0,1-72-72c0-57.23,55.47-105,72-118,16.53,13,72,60.75,72,118A72.08,72.08,0,0,1,128,216Zm55.89-62.66a57.6,57.6,0,0,1-46.56,46.55A8.75,8.75,0,0,1,136,200a8,8,0,0,1-1.32-15.89c16.57-2.79,30.63-16.85,33.44-33.45a8,8,0,0,1,15.78,2.68Z'/%3E%3C/svg%3E"); }
+.icone-fluxo { --icone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M80,176a32,32,0,1,1-32-32A32,32,0,0,1,80,176Z' opacity='0.2'/%3E%3Cpath d='M245.66,74.34l-32-32a8,8,0,0,0-11.32,11.32L220.69,72H208c-49.33,0-61.05,28.12-71.38,52.92-9.38,22.51-16.92,40.59-49.48,42.84a40,40,0,1,0,.1,16c43.26-2.65,54.34-29.15,64.14-52.69C161.41,107,169.33,88,208,88h12.69l-18.35,18.34a8,8,0,0,0,11.32,11.32l32-32A8,8,0,0,0,245.66,74.34ZM48,200a24,24,0,1,1,24-24A24,24,0,0,1,48,200Z'/%3E%3C/svg%3E"); }
+.icone-sol { --icone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M184,128a56,56,0,1,1-56-56A56,56,0,0,1,184,128Z' opacity='0.2'/%3E%3Cpath d='M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z'/%3E%3C/svg%3E"); }
+.icone-comida { --icone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M224,112a96,96,0,0,1-56,87.3V208a8,8,0,0,1-8,8H96a8,8,0,0,1-8-8v-8.7A96,96,0,0,1,32,112Z' opacity='0.2'/%3E%3Cpath d='M224,104h-8.37a88,88,0,0,0-175.26,0H32a8,8,0,0,0-8,8,104.35,104.35,0,0,0,56,92.28V208a16,16,0,0,0,16,16h64a16,16,0,0,0,16-16v-3.72A104.35,104.35,0,0,0,232,112,8,8,0,0,0,224,104ZM173.48,56.23q2.75,2.25,5.27,4.75a87.92,87.92,0,0,0-49.15,43H100.1A72.26,72.26,0,0,1,168,56C169.83,56,171.66,56.09,173.48,56.23Zm15.91,18.2A71.45,71.45,0,0,1,199.54,104H148.12A71.84,71.84,0,0,1,189.39,74.43ZM128,40a71.87,71.87,0,0,1,19,2.57A88.36,88.36,0,0,0,83.33,104H56.46A72.08,72.08,0,0,1,128,40Zm36.66,152A8,8,0,0,0,160,199.3V208H96v-8.7A8,8,0,0,0,91.34,192a88.29,88.29,0,0,1-51-72H215.63A88.29,88.29,0,0,1,164.66,192Z'/%3E%3C/svg%3E"); }
+.icone-flor { --icone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M169.23,66v0A80,80,0,0,0,128,136,80,80,0,0,0,86.77,66v0C100,38,128,24,128,24S156,38,169.23,66Z' opacity='0.2'/%3E%3Cpath d='M208,48a87.48,87.48,0,0,0-35.36,7.43c-15.1-25.37-39.92-38-41.06-38.59a8,8,0,0,0-7.16,0c-1.14.58-26,13.22-41.06,38.59A87.48,87.48,0,0,0,48,48a8,8,0,0,0-8,8V96a88.11,88.11,0,0,0,80,87.63v35.43L83.58,200.84a8,8,0,1,0-7.16,14.32l48,24a8,8,0,0,0,7.16,0l48-24a8,8,0,0,0-7.16-14.32L136,219.06V183.63A88.11,88.11,0,0,0,216,96V56A8,8,0,0,0,208,48ZM128,33.21c6.65,4.08,21.08,14.19,30.64,30A88.46,88.46,0,0,0,128,99.36,88.4,88.4,0,0,0,97.36,63.19C106.93,47.4,121.35,37.29,128,33.21ZM56,96V64.44A72.1,72.1,0,0,1,120,136v31.56A72.1,72.1,0,0,1,56,96Zm144,0a72.1,72.1,0,0,1-64,71.56V136a72.1,72.1,0,0,1,64-71.56Z'/%3E%3C/svg%3E"); }
+.icone-ar { --icone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M120,96a24,24,0,1,1,24-24A24,24,0,0,1,120,96Zm88-16a24,24,0,1,0,24,24A24,24,0,0,0,208,80Zm-56,80a24,24,0,1,0,24,24A24,24,0,0,0,152,160Z' opacity='0.2'/%3E%3Cpath d='M184,184a32,32,0,0,1-32,32c-13.7,0-26.95-8.93-31.5-21.22a8,8,0,0,1,15-5.56C137.74,195.27,145,200,152,200a16,16,0,0,0,0-32H40a8,8,0,0,1,0-16H152A32,32,0,0,1,184,184Zm-64-80a32,32,0,0,0,0-64c-13.7,0-26.95,8.93-31.5,21.22a8,8,0,0,0,15,5.56C105.74,60.73,113,56,120,56a16,16,0,0,1,0,32H24a8,8,0,0,0,0,16Zm88-32c-13.7,0-26.95,8.93-31.5,21.22a8,8,0,0,0,15,5.56C193.74,92.73,201,88,208,88a16,16,0,0,1,0,32H32a8,8,0,0,0,0,16H208a32,32,0,0,0,0-64Z'/%3E%3C/svg%3E"); }
+.icone-robo { --icone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M200,56H56A24,24,0,0,0,32,80V192a24,24,0,0,0,24,24H200a24,24,0,0,0,24-24V80A24,24,0,0,0,200,56ZM164,184H92a20,20,0,0,1,0-40h72a20,20,0,0,1,0,40Z' opacity='0.2'/%3E%3Cpath d='M200,48H136V16a8,8,0,0,0-16,0V48H56A32,32,0,0,0,24,80V192a32,32,0,0,0,32,32H200a32,32,0,0,0,32-32V80A32,32,0,0,0,200,48Zm16,144a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V80A16,16,0,0,1,56,64H200a16,16,0,0,1,16,16ZM72,108a12,12,0,1,1,12,12A12,12,0,0,1,72,108Zm88,0a12,12,0,1,1,12,12A12,12,0,0,1,160,108Zm4,28H92a28,28,0,0,0,0,56h72a28,28,0,0,0,0-56Zm-24,16v24H116V152ZM80,164a12,12,0,0,1,12-12h8v24H92A12,12,0,0,1,80,164Zm84,12h-8V152h8a12,12,0,0,1,0,24Z'/%3E%3C/svg%3E"); }
+.icone-mao { --icone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M216,116v36a80,80,0,0,1-80,80c-44.18,0-55.81-24-93.32-90a20,20,0,0,1,34.64-20L96,152V44a20,20,0,0,1,40,0v56a20,20,0,0,1,40,0v16a20,20,0,0,1,40,0Z' opacity='0.2'/%3E%3Cpath d='M196,88a27.86,27.86,0,0,0-13.35,3.39A28,28,0,0,0,144,74.7V44a28,28,0,0,0-56,0v80l-3.82-6.13A28,28,0,0,0,35.73,146l4.67,8.23C74.81,214.89,89.05,240,136,240a88.1,88.1,0,0,0,88-88V116A28,28,0,0,0,196,88Zm12,64a72.08,72.08,0,0,1-72,72c-37.63,0-47.84-18-81.68-77.68l-4.69-8.27,0-.05A12,12,0,0,1,54,121.61a11.88,11.88,0,0,1,6-1.6,12,12,0,0,1,10.41,6,1.76,1.76,0,0,0,.14.23l18.67,30A8,8,0,0,0,104,152V44a12,12,0,0,1,24,0v68a8,8,0,0,0,16,0V100a12,12,0,0,1,24,0v20a8,8,0,0,0,16,0v-4a12,12,0,0,1,24,0Z'/%3E%3C/svg%3E"); }
+.icone-som { --icone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M80,88v80H32a8,8,0,0,1-8-8V96a8,8,0,0,1,8-8Z' opacity='0.2'/%3E%3Cpath d='M155.51,24.81a8,8,0,0,0-8.42.88L77.25,80H32A16,16,0,0,0,16,96v64a16,16,0,0,0,16,16H77.25l69.84,54.31A8,8,0,0,0,160,224V32A8,8,0,0,0,155.51,24.81ZM32,96H72v64H32ZM144,207.64,88,164.09V91.91l56-43.55Zm54-106.08a40,40,0,0,1,0,52.88,8,8,0,0,1-12-10.58,24,24,0,0,0,0-31.72,8,8,0,0,1,12-10.58ZM248,128a79.9,79.9,0,0,1-20.37,53.34,8,8,0,0,1-11.92-10.67,64,64,0,0,0,0-85.33,8,8,0,1,1,11.92-10.67A79.83,79.83,0,0,1,248,128Z'/%3E%3C/svg%3E"); }
+.icone-estrela { --icone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M229.06,108.79l-48.7,42,14.88,62.79a8.4,8.4,0,0,1-12.52,9.17L128,189.09,73.28,222.74a8.4,8.4,0,0,1-12.52-9.17l14.88-62.79-48.7-42A8.46,8.46,0,0,1,31.73,94L95.64,88.8l24.62-59.6a8.36,8.36,0,0,1,15.48,0l24.62,59.6L224.27,94A8.46,8.46,0,0,1,229.06,108.79Z' opacity='0.2'/%3E%3Cpath d='M239.18,97.26A16.38,16.38,0,0,0,224.92,86l-59-4.76L143.14,26.15a16.36,16.36,0,0,0-30.27,0L90.11,81.23,31.08,86a16.46,16.46,0,0,0-9.37,28.86l45,38.83L53,211.75a16.38,16.38,0,0,0,24.5,17.82L128,198.49l50.53,31.08A16.4,16.4,0,0,0,203,211.75l-13.76-58.07,45-38.83A16.43,16.43,0,0,0,239.18,97.26Zm-15.34,5.47-48.7,42a8,8,0,0,0-2.56,7.91l14.88,62.8a.37.37,0,0,1-.17.48c-.18.14-.23.11-.38,0l-54.72-33.65a8,8,0,0,0-8.38,0L69.09,215.94c-.15.09-.19.12-.38,0a.37.37,0,0,1-.17-.48l14.88-62.8a8,8,0,0,0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16A8,8,0,0,0,103,91.86l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153,91.86a8,8,0,0,0,6.75,4.92l63.92,5.16c.15,0,.24,0,.33.29S224,102.63,223.84,102.73Z'/%3E%3C/svg%3E"); }
+
+/* ==========================================================
+   PÁGINA INÍCIO
+========================================================== */
+
+.mascote {
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    padding-top: clamp(28px, 8vh, 64px);
+}
+
+/* Blur atrás do mascote */
+.mascote::before {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: min(64vw, 270px);
+    aspect-ratio: 1;
+
+    background: radial-gradient(
+        circle,
+        #f7f4f6 0%,
+        #6ae3f9 45%,
+        transparent 70%
+    );
+
+    border-radius: 50%;
+
+    filter: blur(40px);
+    opacity: 0.9;
+}
+
+#mascoteMensagem {
+    position: relative;
+
+    margin-top: clamp(14px, 3vh, 22px);
+    padding: 10px 22px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(16px, 4.6vw, 20px);
+    font-weight: 600;
+    color: var(--tinta);
+
+    background-color: var(--card);
+    border-radius: 999px;
+    box-shadow: var(--sombra);
+}
+
+#mascoteMensagem::before {
+    content: "";
+
+    position: absolute;
+    top: -6px;
+    left: 50%;
+
+    width: 14px;
+    height: 14px;
+
+    background-color: var(--card);
+    transform: translateX(-50%) rotate(45deg);
+    border-radius: 3px;
+}
+
+
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.informacoesHome {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(10px, 3vw, 16px);
+
+    margin-top: clamp(24px, 5vh, 40px);
+}
+
+.info,
+.infoReservatorio {
+    background-color: var(--card);
+    border-radius: 24px;
+    padding: clamp(14px, 4vw, 20px);
+    box-shadow: var(--sombra);
+}
+
+.info::before,
+.infoReservatorio::before {
+    display: grid;
+    place-items: center;
+
+    width: 40px;
+    height: 40px;
+
+    font-size: 20px;
+    border-radius: var(--raio-folha-pequena);
+}
+
+.info:nth-child(1)::before { content: "💧"; background-color: var(--agua); }
+.info:nth-child(2)::before { content: "🚿"; background-color: var(--pessego); }
+.infoReservatorio::before  { content: "🪣"; background-color: var(--menta); }
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+
+    min-height: clamp(116px, 30vw, 140px);
+}
+
+.info::before {
+    margin-bottom: 10px;
+}
+
+.info h2,
+.infoReservatorio h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(14px, 3.6vw, 15px);
+    font-weight: 500;
+    color: var(--texto-suave);
+}
+
+.info p {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(18px, 5vw, 22px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--texto);
+}
+
+
+/* =========================
+   RESERVATÓRIO
+========================= */
+
+.infoReservatorio {
+    grid-column: 1 / -1;
+
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 14px;
+}
+
+.infoReservatorio::before { grid-column: 1; grid-row: 1; }
+.infoReservatorio h2      { grid-column: 2; grid-row: 1; }
+
+#porcentagemReservatorio {
+    grid-column: 3;
+    grid-row: 1;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(22px, 6vw, 28px);
+    font-weight: 700;
+    color: var(--tinta);
+}
+
+.barraReservatorio {
+    grid-column: 1 / -1;
+    grid-row: 2;
+
+    height: clamp(12px, 3.4vw, 16px);
+
+    background-color: var(--trilho);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+#nivelReservatorio {
+    width: 98%;
+    height: 100%;
+
+    background: linear-gradient(90deg, var(--menta-forte), #7FC8E8);
+    border-radius: 999px;
+
+    transition: width 0.4s ease;
+}
+
+
+/* =========================
+   TELAS MUITO PEQUENAS E TELAS BAIXAS
+========================= */
+
+@media (max-width: 340px) {
+    .informacoesHome {
+        gap: 8px;
+    }
+
+    .info,
+    .infoReservatorio {
+        padding: 12px;
+        border-radius: 20px;
+    }
+}
+
+@media (max-height: 640px) {
+    .informacoesHome {
+        margin-top: 20px;
+    }
+}
+
+
+/* =========================
+   TABLET E TELAS GRANDES
+========================= */
+
+@media (min-width: 700px) {
+
+    .mascote::before {
+        width: min(60vw, 360px);
+    }
+
+    #mascoteMensagem {
+        margin-top: 28px;
+        padding: 14px 32px;
+        font-size: 24px;
+    }
+
+    .informacoesHome {
+        gap: 22px;
+        margin-top: clamp(36px, 6vh, 64px);
+    }
+
+    .info,
+    .infoReservatorio {
+        padding: 28px;
+        border-radius: 32px;
+    }
+
+    .info {
+        min-height: 170px;
+    }
+
+    .info::before,
+    .infoReservatorio::before {
+        width: 56px;
+        height: 56px;
+        font-size: 28px;
+        border-radius: var(--raio-folha-pequena);
+    }
+
+    .info h2,
+    .infoReservatorio h2 {
+        font-size: 21px;
+    }
+
+    .info p {
+        font-size: 28px;
+    }
+
+    .infoReservatorio {
+        grid-template-columns: 56px 1fr auto;
+        column-gap: 18px;
+        row-gap: 20px;
+    }
+
+    #porcentagemReservatorio {
+        font-size: 36px;
+    }
+
+    .barraReservatorio {
+        height: 20px;
+    }
+}
+
+
+/* ==========================================================
+   PÁGINA CUIDAR
+========================================================== */
+
+.tipo_planta {
+    margin-top: clamp(20px, 5vh, 32px);
+}
+
+.estado_planta,
+.irrigacao,
+.historico {
+    margin-top: var(--espaco-secao);
+}
+
+/* mais respiro ao redor do botão (a ação principal) */
+.irrigacao {
+    margin-top: calc(var(--espaco-secao) + 8px);
+}
+
+.historico {
+    margin-top: calc(var(--espaco-secao) + 16px);
+}
+
+
+/* =========================
+   TIPO DA PLANTA
+========================= */
+
+.tipo_planta {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    align-items: center;
+    column-gap: 16px;
+    row-gap: 6px;
+
+    padding: clamp(20px, 5.5vw, 26px);
+
+    background: linear-gradient(135deg, var(--menta), var(--pessego));
+    border-radius: 28px;
+}
+
+.tipo_planta::before {
+    content: "🪴";
+
+    grid-column: 1;
+    grid-row: 1 / span 2;
+
+    display: grid;
+    place-items: center;
+
+    width: 56px;
+    height: 56px;
+
+    font-size: 30px;
+
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 18px;
+}
+
+.tipo_planta p:nth-child(1) {
+    grid-column: 2;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(13px, 3.6vw, 15px);
+    font-weight: 500;
+    color: var(--tinta);
+}
+
+#tipo_planta {
+    grid-column: 2;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(22px, 6.4vw, 28px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--texto);
+}
+
+#dica {
+    grid-column: 1 / -1;
+
+    margin-top: 16px;
+    padding: 12px 16px;
+
+    font-size: clamp(14px, 4vw, 16px);
+    font-weight: 600;
+    line-height: 1.4;
+
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+}
+
+#dica::before {
+    content: "💡 ";
+}
+
+
+/* =========================
+   RESERVATÓRIO E UMIDADE
+========================= */
+
+.estado_planta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: clamp(14px, 4vw, 20px);
+}
+
+.infoReservatorioCuidar,
+.infoUmidade {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    column-gap: 12px;
+    row-gap: 14px;
+
+    padding: clamp(18px, 5vw, 22px);
+
+    background-color: rgba(255, 255, 255, 0.65);
+    border: 1px solid var(--linha-suave);
+    border-radius: 22px;
+}
+
+.infoReservatorioCuidar h2,
+.infoUmidade h2 {
+    grid-column: 1;
+    grid-row: 1;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(16px, 4vw, 18px);
+    font-weight: 500;
+    color: var(--texto-suave);
+}
+
+#porcentagemReservatorioCuidar,
+#porcentagemUmidade {
+    grid-column: 2;
+    grid-row: 1;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(18px, 5vw, 20px);
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.barraReservatorioCuidar,
+.barraUmidade {
+    grid-column: 1 / -1;
+    grid-row: 2;
+
+    height: 8px;
+
+    background-color: var(--trilho);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+#nivelReservatorioCuidar,
+#nivelUmidade {
+    height: 100%;
+    background: var(--menta-forte);
+    border-radius: 999px;
+    transition: width 0.4s ease;
+}
+
+#nivelReservatorioCuidar { width: 98%; }
+#nivelUmidade            { width: 68%; }
+
+/* Alertas */
+#alertaReservatorioCuidar,
+#alerta_umidade {
+    grid-column: 1 / -1;
+    grid-row: 3;
+
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--texto-suave);
+}
+
+#alertaReservatorioCuidar.atencao,
+#alerta_umidade.atencao {
+    color: #B4611B;
+    font-weight: 700;
+}
+
+
+/* =========================
+   IRRIGAÇÃO
+========================= */
+
+.regar {
+    position: relative;
+    isolation: isolate;
+}
+
+.regar::before {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    inset: -14px -6px;
+
+    background: radial-gradient(
+        ellipse at center,
+        #8BDCF7 0%,
+        #9BE8C6 45%,
+        transparent 75%
+    );
+
+    filter: blur(106px);
+    opacity: 0.6;
+}
+
+#btnRegar {
+    animation: respirar 3s ease-in-out infinite;
+}
+
+#btnRegar::before {
+    /* gota */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F4A55' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z'/%3E%3C/svg%3E");
+}
+
+@keyframes respirar {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.02); }
+}
+
+#btnRegar:hover,
+#btnRegar:active,
+#btnRegar:disabled {
+    animation: none;
+}
+
+/* Status da irrigação automática */
+.statusIrrigacao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-top: clamp(28px, 7vw, 36px);
+    padding: 0 6px;
+}
+
+.statusIrrigacao p:first-child {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(14px, 3.8vw, 15px);
+    font-weight: 500;
+    color: var(--texto-suave);
+}
+
+#irrigacaoAutomatica {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 6px 14px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(14px, 3.8vw, 15px);
+    font-weight: 600;
+    color: var(--tinta);
+
+    background-color: var(--menta);
+    border-radius: 999px;
+}
+
+#irrigacaoAutomatica::before {
+    content: "";
+
+    width: 8px;
+    height: 8px;
+
+    background-color: #4CAF7A;
+    border-radius: 50%;
+}
+
+#irrigacaoAutomatica.desativada::before {
+    background-color: #E57373;
+}
+
+
+/* =========================
+   HISTÓRICO
+========================= */
+
+.historico h2 {
+    margin-bottom: 16px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(18px, 5vw, 22px);
+    font-weight: 600;
+    color: var(--tinta);
+}
+
+#listaHistorico {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#listaHistorico > * {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 16px 18px;
+
+    font-size: clamp(14px, 3.8vw, 16px);
+    font-weight: 600;
+
+    background-color: var(--card);
+    border-radius: 18px;
+    box-shadow: var(--sombra);
+}
+
+/* Estado vazio */
+#listaHistorico:empty::before {
+    content: "Nenhuma rega ainda. Toque em Regar agora para começar!";
+
+    padding: 24px 20px;
+
+    font-size: clamp(14px, 3.8vw, 16px);
+    font-weight: 600;
+    text-align: center;
+    color: var(--texto-suave);
+
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 2px dashed #E4DBCF;
+    border-radius: 20px;
+}
+
+
+/* =========================
+   TABLET E TELAS GRANDES
+========================= */
+
+@media (min-width: 700px) {
+
+    .tipo_planta {
+        grid-template-columns: 72px 1fr;
+        column-gap: 22px;
+        padding: 32px;
+        border-radius: 36px;
+    }
+    .tipo_planta::before {
+        width: 72px;
+        height: 72px;
+        font-size: 38px;
+        border-radius: 22px;
+    }
+
+    .tipo_planta p:nth-child(1) { font-size: 20px; }
+    #tipo_planta                { font-size: 34px; }
+    #dica                       { font-size: 20px; padding: 16px 20px; margin-top: 20px; }
+
+    .estado_planta {
+        gap: 24px;
+    }
+
+    .infoReservatorioCuidar,
+    .infoUmidade {
+        padding: 28px;
+        row-gap: 18px;
+        border-radius: 28px;
+    }
+
+    .infoReservatorioCuidar h2,
+    .infoUmidade h2 { font-size: 20px; }
+
+    #porcentagemReservatorioCuidar,
+    #porcentagemUmidade { font-size: 24px; }
+
+    .barraReservatorioCuidar,
+    .barraUmidade { height: 10px; }
+
+    #alertaReservatorioCuidar,
+    #alerta_umidade { font-size: 18px; }
+
+    .statusIrrigacao {
+        margin-top: 40px;
+    }
+
+    .statusIrrigacao p:first-child,
+    #irrigacaoAutomatica { font-size: 20px; }
+
+    .historico h2 { font-size: 26px; margin-bottom: 20px; }
+
+    #listaHistorico { gap: 14px; }
+
+    #listaHistorico > * {
+        padding: 20px 24px;
+        font-size: 18px;
+        border-radius: 22px;
+    }
+}
+
+
+/* ==========================================================
+   PÁGINA MASCOTE
+========================================================== */
+
+
+/* =========================
+   ÁREA DO MASCOTE
+========================= */
+
+.areaMascote {
+    position: relative;
+    isolation: isolate;
+
+    display: grid;
+    justify-items: center;
+
+    text-align: center;
+
+    padding-top: clamp(12px, 4vh, 32px);
+}
+
+/* Halo */
+.areaMascote::before {
+    content: "";
+
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    justify-self: center;
+
+    z-index: -1;
+
+    width: min(60vw, 250px);
+    aspect-ratio: 1;
+
+    background: radial-gradient(
+        circle,
+        #f7f4f6 0%,
+        #6ae3f9 45%,
+        transparent 70%
+    );
+
+    border-radius: 50%;
+
+    filter: blur(36px);
+    opacity: 0.85;
+}
+
+
+/* =========================
+   PONTOS
+========================= */
+
+#pontos {
+    position: absolute;
+    top: clamp(18px, 5vw, 26px);
+    right: clamp(4px, 2vw, 10px);
+
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(15px, 4vw, 17px);
+    color: var(--tinta);
+}
+
+#quantidadePontos {
+    font-size: clamp(20px, 5.6vw, 24px);
+    font-weight: 700;
+}
+
+
+/* =========================
+   BOTÃO PERSONALIZAR
+========================= */
+
+.btnPersonalizar {
+    margin-top: clamp(28px, 7vw, 40px);
+}
+
+.btnPersonalizar::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F4A55' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='13.5' cy='6.5' r='.5'/%3E%3Ccircle cx='17.5' cy='10.5' r='.5'/%3E%3Ccircle cx='8.5' cy='7.5' r='.5'/%3E%3Ccircle cx='6.5' cy='12.5' r='.5'/%3E%3Cpath d='M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z'/%3E%3C/svg%3E");
+}
+
+
+/* =========================
+   "COMO GANHAR PONTOS?"
+========================= */
+
+.btnPontos {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    margin-top: clamp(30px, 7vw, 40px);
+
+    background: none;
+    border: none;
+    padding: 0;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(17px, 4.2vw, 18px);
+    font-weight: 600;
+    color: var(--tinta);
+    text-align: left;
+
+    cursor: default;
+}
+
+.listaPontos {
+    margin-top: clamp(12px, 3vw, 16px);
+
+    background-color: var(--card);
+    border-radius: 22px;
+    box-shadow: var(--sombra);
+    overflow: hidden;
+}
+
+.itemPontos {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: clamp(14px, 4vw, 18px) clamp(16px, 4.5vw, 20px);
+}
+
+.itemPontos + .itemPontos {
+    border-top: 1px solid var(--linha-suave);
+}
+
+.iconePontos {
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    width: 44px;
+    height: 44px;
+
+    font-size: 20px;
+
+    border-radius: 14px;
+}
+
+.itemPontos:nth-child(1) .iconePontos { background-color: #EDE1FF; }
+.itemPontos:nth-child(2) .iconePontos { background-color: var(--menta); }
+.itemPontos:nth-child(3) .iconePontos { background-color: var(--agua); }
+
+.textoPontos {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.textoPontos strong {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.textoPontos p {
+    font-size: clamp(14px, 3.6vw, 16px);
+    line-height: 1.35;
+    color: var(--texto-suave);
+}
+
+.valorPontos {
+    flex-shrink: 0;
+
+    padding: 5px 11px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: clamp(12px, 3.4vw, 13px);
+    color: var(--tinta);
+
+    background-color: var(--menta);
+    border-radius: 999px;
+}
+
+
+/* =========================
+   TABLET E TELAS GRANDES
+========================= */
+
+@media (min-width: 700px) {
+
+    .areaMascote::before {
+        width: min(56vw, 340px);
+    }
+
+    #pontos {
+        font-size: 18px;
+    }
+
+    #quantidadePontos {
+        font-size: 26px;
+    }
+
+    .btnPontos {
+        font-size: 24px;
+    }
+
+    .listaPontos {
+        border-radius: 26px;
+    }
+
+    .itemPontos {
+        padding: 22px 26px;
+        gap: 18px;
+    }
+
+    .iconePontos {
+        width: 52px;
+        height: 52px;
+        font-size: 24px;
+        border-radius: 16px;
+    }
+
+    .textoPontos strong { font-size: 22px; }
+    .textoPontos p      { font-size: 20px; }
+
+    .valorPontos {
+        padding: 6px 14px;
+        font-size: 16px;
+    }
+}
+
+
+/* ==========================================================
+   PÁGINA CADASTRO
+========================================================== */
+
+
+/* =========================
+   ESTRUTURA
+========================= */
+
+main.cadastro {
+    padding-top: max(clamp(20px, 5vh, 36px), env(safe-area-inset-top, 0px));
+    padding-bottom: clamp(32px, 8vh, 56px);
+}
+
+main.cadastro > * + * {
+    margin-top: var(--espaco-secao);
+}
+
+.campoCadastro + .campoCadastro {
+    margin-top: clamp(14px, 4vw, 18px);
+}
+
+
+/* =========================
+   CABEÇALHO DE BOAS-VINDAS
+========================= */
+
+.cabecalhoCadastro {
+    text-align: center;
+}
+
+.cabecalhoCadastro .titulo {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(24px, 7vw, 32px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--tinta);
+}
+
+.cabecalhoCadastro p {
+    margin-top: 10px;
+
+    font-size: clamp(14px, 4.5vw, 18px);
+    line-height: 1.5;
+    color: var(--texto-suave);
+}
+
+
+/* =========================
+   CAMPOS DE TEXTO
+========================= */
+
+.campoCadastro {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campoCadastro label {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(16px, 4.5vw, 18px);
+    font-weight: 600;
+    color: var(--tinta);
+}
+
+.campoCadastro input {
+    width: 100%;
+
+    padding: 14px 18px;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(15px, 4vw, 16px);
+    color: var(--texto);
+
+    background-color: var(--card);
+    border: 2px solid #CBE3D6;
+    border-radius: 18px;
+
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campoCadastro input::placeholder {
+    color: #B7AFA2;
+}
+
+.campoCadastro input:focus {
+    outline: none;
+
+    border-color: var(--menta-forte);
+    box-shadow: 0 0 0 4px rgba(159, 216, 192, 0.28);
+}
+
+
+/* =========================
+   TÍTULOS DE SEÇÃO
+========================= */
+
+.escolhaPlanta h2,
+.escolhaMascote h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(18px, 5.2vw, 22px);
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.escolhaIrrigacao h2 {
+    padding-top: 10px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(18px, 5.2vw, 22px);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--texto);
+}
+
+.textoAuxiliar {
+    margin-top: 4px;
+
+    font-size: clamp(14px, 3.8vw, 15px);
+    color: var(--texto-suave);
+}
+
+
+/* =========================
+   GRUPOS DE PLANTAS (grade de 8 cards)
+========================= */
+
+.gruposPlantas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(10px, 3vw, 14px);
+
+    margin-top: clamp(16px, 4vw, 20px);
+}
+
+.cardPlanta {
+    gap: 6px;
+    padding: clamp(14px, 4vw, 18px) clamp(10px, 3vw, 14px);
+    border-radius: 22px;
+}
+
+.imagemPlanta {
+    display: grid;
+    place-items: center;
+
+    width: clamp(56px, 16vw, 72px);
+    aspect-ratio: 1;
+
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.imagemPlanta img {
+    width: 95%;
+    height: 95%;
+    object-fit: contain;
+}
+
+.cardPlanta:nth-child(1) .imagemPlanta { background-color: var(--pessego); }  /* Cactos */
+.cardPlanta:nth-child(2) .imagemPlanta { background-color: var(--menta); }    /* Suculentas */
+.cardPlanta:nth-child(3) .imagemPlanta { background-color: var(--agua); }     /* Tropicais */
+.cardPlanta:nth-child(4) .imagemPlanta { background-color: var(--rosa); }     /* Floridas */
+.cardPlanta:nth-child(5) .imagemPlanta { background-color: #DFF6C8; }         /* Samambaias */
+.cardPlanta:nth-child(6) .imagemPlanta { background-color: #EDE1FF; }         /* Orquídeas */
+.cardPlanta:nth-child(7) .imagemPlanta { background-color: #FFE9B8; }         /* Temperos */
+.cardPlanta:nth-child(8) .imagemPlanta { background-color: #FFD3D3; }         /* Frutíferas */
+
+.cardPlanta h3 {
+    margin-top: 4px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(14px, 4vw, 16px);
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.cardPlanta .exemplos {
+    font-size: clamp(12px, 3.6vw, 14px);
+    line-height: 1.35;
+    color: var(--texto-suave);
+}
+
+.cardPlanta .descricao {
+    display: none;
+}
+
+
+/* =========================
+   ESCOLHA DO MASCOTE
+========================= */
+
+.opcoesMascote {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(12px, 4vw, 18px);
+
+    margin-top: clamp(16px, 4vw, 20px);
+}
+
+.cardMascote {
+    gap: 8px;
+    padding: clamp(18px, 5vw, 24px) clamp(10px, 3vw, 14px);
+    border-radius: 26px;
+}
+
+.imagemMascote {
+    display: grid;
+    place-items: center;
+
+    width: clamp(96px, 28vw, 130px);
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+}
+
+.imagemMascote img {
+    width: 88%;
+    height: 88%;
+    object-fit: contain;
+}
+
+.cardMascote:nth-child(1) .imagemMascote {
+    background: radial-gradient(circle, var(--menta) 0%, var(--agua) 70%, transparent 100%);
+}
+
+.cardMascote:nth-child(2) .imagemMascote {
+    background: radial-gradient(circle, var(--rosa) 0%, var(--pessego) 70%, transparent 100%);
+}
+
+.cardMascote h3 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(15px, 4.4vw, 17px);
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.cardMascote.selecionado::after {
+    width: 24px;
+    height: 24px;
+    margin-top: 0;
+    font-size: 14px;
+}
+
+
+/* =========================
+   ESCOLHA DA IRRIGAÇÃO (2 cards)
+========================= */
+
+.opcoesIrrigacao {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(12px, 4vw, 18px);
+
+    margin-top: clamp(16px, 4vw, 20px);
+}
+
+.cardIrrigacao {
+    gap: 10px;
+    padding: clamp(20px, 5.5vw, 26px) clamp(12px, 3.5vw, 16px);
+    border-radius: 26px;
+}
+
+.cardIrrigacao::before {
+    display: grid;
+    place-items: center;
+
+    width: clamp(64px, 18vw, 80px);
+    aspect-ratio: 1;
+
+    font-size: clamp(24px, 7vw, 32px);
+
+    border-radius: 50%;
+}
+
+.cardIrrigacao::before {
+    content: "";
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 46%;
+}
+
+.cardIrrigacao[data-irrigacao="automatica"]::before {
+    background-color: #D4F0E1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' fill='%232F7A5C'%3E%3Cpath d='M200,56H56A24,24,0,0,0,32,80V192a24,24,0,0,0,24,24H200a24,24,0,0,0,24-24V80A24,24,0,0,0,200,56ZM164,184H92a20,20,0,0,1,0-40h72a20,20,0,0,1,0,40Z' opacity='0.2'/%3E%3Cpath d='M200,48H136V16a8,8,0,0,0-16,0V48H56A32,32,0,0,0,24,80V192a32,32,0,0,0,32,32H200a32,32,0,0,0,32-32V80A32,32,0,0,0,200,48Zm16,144a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V80A16,16,0,0,1,56,64H200a16,16,0,0,1,16,16ZM72,108a12,12,0,1,1,12,12A12,12,0,0,1,72,108Zm88,0a12,12,0,1,1,12,12A12,12,0,0,1,160,108Zm4,28H92a28,28,0,0,0,0,56h72a28,28,0,0,0,0-56Zm-24,16v24H116V152ZM80,164a12,12,0,0,1,12-12h8v24H92A12,12,0,0,1,80,164Zm84,12h-8V152h8a12,12,0,0,1,0,24Z'/%3E%3C/svg%3E");
+}
+
+.cardIrrigacao[data-irrigacao="manual"]::before {
+    background-color: #D6EEF9;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' fill='%232A87A8'%3E%3Cpath d='M216,116v36a80,80,0,0,1-80,80c-44.18,0-55.81-24-93.32-90a20,20,0,0,1,34.64-20L96,152V44a20,20,0,0,1,40,0v56a20,20,0,0,1,40,0v16a20,20,0,0,1,40,0Z' opacity='0.2'/%3E%3Cpath d='M196,88a27.86,27.86,0,0,0-13.35,3.39A28,28,0,0,0,144,74.7V44a28,28,0,0,0-56,0v80l-3.82-6.13A28,28,0,0,0,35.73,146l4.67,8.23C74.81,214.89,89.05,240,136,240a88.1,88.1,0,0,0,88-88V116A28,28,0,0,0,196,88Zm12,64a72.08,72.08,0,0,1-72,72c-37.63,0-47.84-18-81.68-77.68l-4.69-8.27,0-.05A12,12,0,0,1,54,121.61a11.88,11.88,0,0,1,6-1.6,12,12,0,0,1,10.41,6,1.76,1.76,0,0,0,.14.23l18.67,30A8,8,0,0,0,104,152V44a12,12,0,0,1,24,0v68a8,8,0,0,0,16,0V100a12,12,0,0,1,24,0v20a8,8,0,0,0,16,0v-4a12,12,0,0,1,24,0Z'/%3E%3C/svg%3E");
+}
+
+.cardIrrigacao h3 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(15px, 4.2vw, 17px);
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.cardIrrigacao p {
+    font-size: clamp(14px, 3.8vw, 14.5px);
+    line-height: 1.4;
+    color: var(--texto-suave);
+}
+
+/* =========================
+   TABLET E TELAS GRANDES
+========================= */
+
+@media (min-width: 700px) {
+
+    .cabecalhoCadastro .titulo { font-size: 39px; }
+    .cabecalhoCadastro p       { font-size: 19px; }
+
+    .campoCadastro label { font-size: 19px; }
+
+    .campoCadastro input {
+        padding: 16px 22px;
+        font-size: 19px;
+        border-radius: 20px;
+    }
+
+    .escolhaPlanta h2,
+    .escolhaMascote h2,
+    .escolhaIrrigacao h2 { font-size: 28px; }
+
+    .textoAuxiliar { font-size: 19px; }
+
+    .gruposPlantas {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+    }
+
+    .cardPlanta {
+        padding: 22px 16px;
+        border-radius: 26px;
+    }
+
+    .imagemPlanta { width: 80px; border-radius: 20px; }
+
+    .cardPlanta h3        { font-size: 18px; }
+    .cardPlanta .exemplos { font-size: 14px; }
+
+    .cardPlanta .descricao {
+        display: block;
+        margin-top: 2px;
+
+        font-size: 14px;
+        line-height: 1.4;
+        color: var(--texto-suave);
+    }
+
+    .opcoesMascote { gap: 22px; }
+
+    .cardMascote {
+        padding: 30px 20px;
+        border-radius: 32px;
+    }
+
+    .imagemMascote { width: 150px; }
+
+    .cardMascote h3 { font-size: 19px; }
+
+    .opcoesIrrigacao {
+        gap: 22px;
+    }
+
+    .cardIrrigacao {
+        padding: 30px 20px;
+        border-radius: 32px;
+    }
+
+    .cardIrrigacao::before {
+        width: 96px;
+        font-size: 38px;
+    }
+
+    .cardIrrigacao h3 { font-size: 22px; }
+    .cardIrrigacao p  { font-size: 18px; }
+}
+
+
+
+/* ==========================================================
+   PÁGINA APRENDER 
+========================================================== */
+
+
+/* =========================
+   CABEÇALHO DA PÁGINA
+========================= */
+
+.cabecalhoAprender {
+    padding-top: clamp(16px, 4vh, 28px);
+}
+
+.cabecalhoAprender h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(22px, 6.4vw, 28px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--texto);
+}
+
+.cabecalhoAprender .iconeAprenderTitulo {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: clamp(38px, 10vw, 46px);
+    aspect-ratio: 1;
+
+    font-size: clamp(18px, 5vw, 22px);
+
+    background-color: var(--agua);
+    border-radius: 14px;
+}
+
+.cabecalhoAprender p {
+    margin-top: 8px;
+
+    font-size: clamp(14px, 4.5vw, 16px);
+    line-height: 1.5;
+    color: var(--texto-suave);
+}
+
+
+/* =========================
+   BLOCOS DE LIÇÕES
+========================= */
+
+.blocoAprender {
+    margin-top: clamp(32px, 8vw, 48px);
+
+    --acento: var(--menta);  
+}
+
+.blocoAprender:nth-of-type(2) { --acento: var(--agua); }
+.blocoAprender:nth-of-type(3) { --acento: var(--pessego); }
+.blocoAprender:nth-of-type(4) { --acento: #EDE1FF; }
+
+.tituloBloco {
+    margin-bottom: clamp(14px, 4vw, 18px);
+}
+
+.tituloBloco h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(20px, 5.2vw, 23px);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--texto);
+}
+
+.tituloBloco p {
+    margin-top: 4px;
+
+    font-size: clamp(14px, 4.5vw, 16px);
+    line-height: 1.4;
+    color: var(--texto-suave);
+}
+
+
+/* =========================
+   LISTA DE LIÇÕES
+========================= */
+
+.listaLicoes {
+    background-color: var(--card);
+    border-radius: 22px;
+    box-shadow: var(--sombra);
+    overflow: hidden;
+}
+
+.cardLicao {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    width: 100%;
+    padding: clamp(14px, 4vw, 18px) clamp(16px, 4.5vw, 20px);
+
+    font-family: inherit;
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+
+    position: relative;
+    z-index: 0;
+
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.cardLicao + .cardLicao {
+    border-top: 1px solid var(--linha-suave);
+}
+
+.cardLicao:hover {
+    z-index: 1;
+
+    background-color: #F3FAF6;
+    box-shadow: 0 6px 14px rgba(30, 59, 62, 0.08);
+    transform: translateY(-1px) scale(1.01);
+}
+
+.cardLicao:active {
+    background-color: #E6F3EC;
+    box-shadow: none;
+    transform: translateY(0) scale(0.99);
+}
+
+.cardLicao:focus-visible {
+    outline: 3px solid var(--menta-forte);
+    outline-offset: -3px;
+}
+
+/* Número da lição (etiqueta torta) */
+.numeroLicao {
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    width: 38px;
+    height: 38px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(14px, 3.8vw, 15px);
+    font-weight: 700;
+    color: var(--tinta);
+
+    background-color: var(--acento);
+    border-radius: 50%;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+
+    transition: transform 0.2s ease;
+}
+
+.cardLicao:nth-child(odd) .numeroLicao  { transform: rotate(-6deg); }
+.cardLicao:nth-child(even) .numeroLicao { transform: rotate(6deg); }
+
+.cardLicao:hover .numeroLicao {
+    transform: rotate(0deg) scale(1.06);
+}
+
+.cardLicao > div {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cardLicao h3 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--texto);
+}
+
+.cardLicao p {
+    font-size: clamp(13px, 4vw, 14.5px);
+    line-height: 1.35;
+    color: var(--texto-suave);
+}
+
+.setaLicao {
+    flex-shrink: 0;
+
+    font-size: 22px;
+    line-height: 1;
+    color: #C9BEA9;
+
+    transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.cardLicao:hover .setaLicao {
+    transform: translateX(3px);
+    color: var(--tinta);
+}
+
+
+/* =========================
+   TABLET E TELAS GRANDES
+========================= */
+
+@media (min-width: 700px) {
+
+    .cabecalhoAprender h2 { font-size: 34px; }
+    .cabecalhoAprender p  { font-size: 22px; }
+
+    .blocoAprender {
+        margin-top: 56px;
+    }
+
+    .tituloBloco h2 { font-size: 28px; }
+    .tituloBloco p  { font-size: 20px; }
+
+    .listaLicoes {
+        border-radius: 26px;
+    }
+
+    .cardLicao {
+        gap: 18px;
+        padding: 22px 26px;
+    }
+
+    .numeroLicao {
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
+    }
+
+    .cardLicao h3 { font-size: 22px; }
+    .cardLicao p  { font-size: 20px; }
+
+    .setaLicao { font-size: 26px; }
+}
+
+/* ==========================================================
+   LIÇÕES
+========================================================== */
+
+/* Botão voltar */
+.voltar {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(14px, 3.8vw, 15px);
+    font-weight: 600;
+    color: var(--tinta);
+    text-decoration: none;
+
+    transition: opacity 0.15s ease;
+}
+
+.voltar:hover  { opacity: 0.7; }
+.voltar:active { opacity: 0.5; }
+
+.voltar:focus-visible {
+    outline: 3px solid var(--menta-forte);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+/* Ritmo entre as seções */
+.licao {
+    padding-bottom: clamp(32px, 8vh, 56px);
+}
+
+.licao section:first-of-type {
+    margin-top: clamp(20px, 5vh, 32px);
+}
+
+.licao section + section {
+    margin-top: clamp(36px, 8vw, 52px);
+}
+
+.licao h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(23px, 5.9vw, 26px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--tinta);
+}
+
+.licao section > p {
+    margin-top: 6px;
+
+    font-size: clamp(15px, 4vw, 16.5px);
+    line-height: 1.55;
+    color: var(--texto-suave);
+}
+
+.introducaoLicao {
+    text-align: left;
+}
+
+.introducaoLicao > p {
+    max-width: 48ch;
+}
+
+.imagemLicao {
+    margin: clamp(16px, 4vw, 20px) 0 clamp(4px, 1.5vw, 8px);
+
+    border: 1px solid rgba(30, 59, 62, 0.14);
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+.imagemLicao img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+/* ==========================================================
+   2. BLOCOS COMUNS
+========================================================== */
+
+/*"Você sabia?" */
+
+.conteudoCuriosidade {
+    position: relative;
+
+    padding: clamp(18px, 5vw, 22px) clamp(20px, 5.5vw, 24px);
+
+    background-color: #FFF6E4;
+    border-radius: 24px;
+    box-shadow: var(--sombra);
+
+    transform: rotate(-1deg);
+}
+
+.conteudoCuriosidade::before {
+    content: "";
+
+    position: absolute;
+    top: -8px;
+    left: clamp(20px, 6vw, 28px);
+
+    width: 0;
+    height: 0;
+
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid #FFF6E4;
+}
+
+.conteudoCuriosidade h3 {
+    margin-bottom: 6px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(18px, 4.4vw, 19px);
+    font-weight: 700;
+    color: #8A5A15;
+}
+
+.conteudoCuriosidade p {
+    font-size: clamp(15px, 4vw, 17px);
+    line-height: 1.5;
+    color: #6B4A1D;
+}
+
+
+/*"E o Meu PlantAmigo?" */
+
+.conexaoPlantAmigo {
+    background-color: var(--agua);
+    border-radius: 24px;
+    padding: clamp(18px, 5vw, 22px) clamp(20px, 5.5vw, 24px);
+}
+
+.conteudoConexao {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(14px, 4vw, 18px);
+}
+
+.iconeConexao {
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    width: clamp(48px, 13vw, 56px);
+    aspect-ratio: 1;
+
+    font-size: clamp(22px, 6vw, 26px);
+
+    background-color: rgba(255, 255, 255, 0.55);
+    border-radius: 50%;
+}
+
+.conteudoConexao h3 {
+    margin-bottom: 4px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(15.5px, 4.2vw, 17px);
+    font-weight: 700;
+    color: #1B6FA8;
+}
+
+.conteudoConexao p {
+    font-size: clamp(13px, 3.6vw, 15px);
+    line-height: 1.5;
+    color: #1B5A86;
+}
+
+
+/* Fechamento */
+
+.finalLicao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.finalLicao h3 {
+    margin-bottom: 8px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(21px, 5.8vw, 25px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--tinta);
+}
+
+.finalLicao p {
+    margin-bottom: clamp(22px, 5.5vw, 28px);
+
+    max-width: 34ch;
+}
+
+/* ---------------------------------------------------------
+   LIÇÃO 1 — DESCOBRINDO AS PLANTAS
+--------------------------------------------------------- */
+
+.necessidadesPlanta {
+    background-color: var(--painel);
+    --pad-modulo: clamp(23px, 5.5vw, 28px);
+}
+
+.plantaInterativa {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(8px, 2.5vw, 10px);
+
+    margin-top: clamp(14px, 3.5vw, 18px);
+}
+
+.partePlanta {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 10px 18px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(15px, 4vw, 18px);
+    font-weight: 600;
+    color: var(--texto);
+
+    background-color: var(--fundo-item);
+    border: 1.5px solid transparent;
+    border-radius: 999px;
+    cursor: pointer;
+
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.partePlanta::before {
+    content: "";
+    flex-shrink: 0;
+
+    width: 7px;
+    height: 7px;
+
+    background-color: var(--menta-forte);
+    border-radius: 50%;
+
+    transition: opacity 0.15s ease;
+}
+
+.partePlanta:hover {
+    border-color: rgba(159, 216, 192, 0.6);
+    transform: translateY(-1px);
+}
+
+.partePlanta:active {
+    transform: translateY(0) scale(0.97);
+}
+
+.partePlanta:focus-visible {
+    outline: 3px solid var(--menta-forte);
+    outline-offset: 3px;
+}
+
+.partePlanta.selecionado {
+    flex-basis: 100%;
+    max-width: 100%;
+
+    justify-content: flex-start;
+    text-align: left;
+
+    padding: 14px 18px;
+
+    background-color: var(--menta-forte);
+    color: var(--verde-escuro);
+}
+
+.partePlanta.selecionado strong {
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.partePlanta.selecionado::before {
+    opacity: 0;
+}
+
+.necessidades {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    margin-top: clamp(16px, 4vw, 20px);
+
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.necessidade {
+    padding: clamp(14px, 4vw, 18px);
+
+    border-right: 1px solid var(--linha);
+    border-bottom: 1px solid var(--linha);
+}
+
+.necessidade:nth-child(2n)            { border-right: none; }
+.necessidade:nth-last-child(-n+2)     { border-bottom: none; }
+
+.necessidade h3 {
+    margin-bottom: 4px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(15px, 3.8vw, 16px);
+    font-weight: 600;
+    color: var(--tinta);
+}
+
+.necessidade p {
+    font-size: clamp(14px, 4vw, 16px);
+    line-height: 1.4;
+    color: var(--texto-suave);
+}
+
+
+/* ---------------------------------------------------------
+   LIÇÃO 2 — ÁGUA E UMIDADE
+--------------------------------------------------------- */
+
+.licao .introducaoLicao > p {
+    font-size: clamp(17px, 4.6vw, 19px);
+    line-height: 1.5;
+    color: var(--texto);
+}
+
+.beneficios {
+    margin-top: clamp(20px, 5vw, 26px);
+}
+
+.beneficios h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(15.5px, 4.2vw, 17px);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--tinta);
+}
+
+.beneficios h3 .icone {
+    font-size: 1.35em;
+}
+
+.beneficios ul {
+    display: grid;
+    gap: 10px;
+
+    margin-top: 12px;
+    padding: 0;
+    list-style: none;
+}
+
+.beneficios li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 10px 16px 10px 10px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(15px, 4vw, 16.5px);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--texto);
+
+    background-color: var(--fundo-item);
+    border-radius: 18px;
+}
+
+.bolinha {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: 46px;
+    aspect-ratio: 1;
+
+    font-size: 27px;
+
+    border-radius: var(--raio-folha-pequena);
+}
+
+.beneficios--agua .bolinha { background-color: #D6EEF9; color: #2A87A8; }
+.beneficios--sol  .bolinha { background-color: #D4F0E1; color: #2F7A5C; }
+
+.opcoesUmidade {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 2.8vw, 12px);
+
+    margin-top: clamp(18px, 4.5vw, 22px);
+}
+
+.comparacaoPlantas {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    margin-top: clamp(16px, 4vw, 20px);
+}
+
+.plantaNecessidade {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 14px;
+    row-gap: 2px;
+
+    padding: clamp(14px, 4vw, 18px) 4px;
+}
+
+.plantaNecessidade + .plantaNecessidade {
+    border-top: 1px solid var(--linha);
+}
+
+.plantaNecessidade span {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: start;
+
+    font-size: clamp(26px, 7vw, 32px);
+    line-height: 1;
+}
+
+.plantaNecessidade h3 {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.plantaNecessidade p {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+
+/* ---------------------------------------------------------
+   LIÇÃO 3 — A IMPORTÂNCIA DA LUZ
+--------------------------------------------------------- */
+
+.processoFotossintese {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 2.6vw, 12px);
+
+    margin-top: clamp(20px, 5.5vw, 26px);
+}
+
+.ingredienteFotossintese,
+.resultadoFotossintese {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    min-width: 76px;
+    padding: clamp(12px, 3.6vw, 16px) clamp(8px, 2.6vw, 12px);
+
+    border-radius: 18px;
+    text-align: center;
+}
+
+.ingredienteFotossintese {
+    background-color: var(--fundo-item);
+}
+
+/* O resultado ganha um contorno em tinta */
+.resultadoFotossintese {
+    background-color: var(--card);
+    border: 1.5px solid rgba(30, 59, 62, 0.25);
+}
+
+.ingredienteFotossintese span,
+.resultadoFotossintese span {
+    font-size: clamp(22px, 6vw, 26px);
+    line-height: 1;
+}
+
+.ingredienteFotossintese strong,
+.resultadoFotossintese strong {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(11.5px, 3.1vw, 13px);
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.resultadoFotossintese small {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(9.5px, 2.6vw, 11px);
+    font-weight: 600;
+    color: var(--texto-suave);
+}
+
+.sinalFotossintese,
+.setaFotossintese,
+.maisFotossintese {
+    flex-shrink: 0;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(17px, 4.6vw, 20px);
+    font-weight: 700;
+    color: var(--texto-suave);
+}
+
+.setaFotossintese {
+    color: var(--tinta);
+    font-size: clamp(19px, 5.2vw, 23px);
+}
+
+.explicacaoFotossintese {
+    margin-top: clamp(18px, 4.5vw, 22px);
+    padding-top: clamp(14px, 3.5vw, 16px);
+
+    border-top: 1px solid var(--linha);
+
+    font-size: clamp(13px, 3.6vw, 14.5px);
+    line-height: 1.5;
+    color: var(--texto-suave);
+}
+
+
+/* ---------------------------------------------------------
+   LIÇÃO 4 — COMO CUIDAR DA SUA PLANTA
+--------------------------------------------------------- */
+
+.opcoesCuidado {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 2.8vw, 12px);
+
+    margin-top: clamp(18px, 4.5vw, 22px);
+}
+
+
+/* ---------------------------------------------------------
+   LIÇÃO 5 — CONHECENDO OS CACTOS
+--------------------------------------------------------- */
+
+.necessidadesCacto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(12px, 3.2vw, 16px);
+
+    margin-top: clamp(16px, 4vw, 20px);
+}
+
+.necessidadeCacto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    padding: clamp(14px, 4vw, 18px) clamp(8px, 2.6vw, 12px);
+    text-align: center;
+
+    background-color: var(--card);
+    border-radius: 18px;
+}
+
+.iconeNecessidadeCacto {
+    font-size: clamp(26px, 7vw, 32px);
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.necessidadeCacto strong {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(11.5px, 3vw, 12.5px);
+    font-weight: 600;
+    color: #3C7A63;
+}
+
+.dicaCacto {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin-top: clamp(14px, 3.6vw, 18px);
+    padding: clamp(14px, 4vw, 16px) clamp(16px, 4.4vw, 18px);
+
+    background-color: var(--card);
+    border-radius: 18px;
+    border-left: 4px solid var(--tinta);
+}
+
+.dicaCacto span {
+    flex-shrink: 0;
+    font-size: clamp(18px, 5vw, 20px);
+    line-height: 1.4;
+}
+
+.dicaCacto p {
+    font-size: clamp(12.5px, 3.4vw, 14px);
+    line-height: 1.5;
+    color: var(--texto-suave);
+}
+
+.dicaCacto strong {
+    color: var(--texto);
+}
+
+.detalhesCacto {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 2.8vw, 12px);
+
+    margin-top: clamp(18px, 4.5vw, 22px);
+}
+
+.respostaDetalheCacto {
+    padding: 4px clamp(16px, 4.5vw, 18px) clamp(15px, 4.2vw, 17px);
+}
+
+.respostaDetalheCacto p {
+    font-size: clamp(13px, 3.6vw, 14.5px);
+    line-height: 1.5;
+    color: var(--texto-suave);
+}
+
+.galeriaCactos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(14px, 3.6vw, 18px);
+
+    margin-top: clamp(16px, 4vw, 20px);
+}
+
+.tipoCacto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    padding: clamp(16px, 4.5vw, 20px) clamp(10px, 3vw, 14px);
+    text-align: center;
+
+    background-color: var(--card);
+    border-radius: 20px;
+}
+
+.ilustracaoTipoCacto {
+    display: grid;
+    place-items: center;
+
+    width: clamp(56px, 15vw, 64px);
+    aspect-ratio: 1;
+
+    font-size: clamp(26px, 7vw, 30px);
+
+    background-color: var(--fundo-item);
+    border-radius: 50%;
+}
+
+.tipoCacto h3 {
+    margin-top: 4px;
+}
+
+.desafioCacto > p strong {
+    color: var(--tinta);
+}
+
+.respostaDesafioCacto {
+    margin-top: clamp(18px, 4.5vw, 22px);
+}
+
+.respostaDesafioCacto summary {
+    padding: clamp(14px, 4vw, 16px) clamp(16px, 4.5vw, 18px);
+
+    font-size: clamp(14.5px, 3.9vw, 16px);
+    font-weight: 700;
+}
+
+.respostaDesafioCacto summary::after {
+    content: "🔍";
+    flex-shrink: 0;
+    font-size: clamp(15px, 4vw, 17px);
+}
+
+.respostaDesafioCacto[open] summary::after {
+    content: "✓";
+}
+
+.respostaDesafioCacto > div {
+    padding: 4px clamp(16px, 4.5vw, 18px) clamp(16px, 4.5vw, 18px);
+}
+
+.respostaDesafioCacto > div p {
+    font-size: clamp(13px, 3.6vw, 14.5px);
+    line-height: 1.5;
+    color: var(--texto-suave);
+}
+
+.respostaDesafioCacto > div p + p {
+    margin-top: 10px;
+}
+
+
+/* ==========================================================
+   TELAS BEM PEQUENAS
+========================================================== */
+
+@media (max-width: 340px) {
+    .necessidades {
+        grid-template-columns: 1fr;
+    }
+
+    .necessidade {
+        border-right: none;
+        border-bottom: 1px solid var(--linha);
+    }
+
+    .necessidade:last-child {
+        border-bottom: none;
+    }
+}
+
+
+/* ==========================================================
+   TABLET E TELAS GRANDES
+========================================================== */
+
+@media (min-width: 700px) {
+
+    /* Lição 2: as duas listas lado a lado */
+    .aguaPlanta {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 28px;
+    }
+
+    .aguaPlanta h2 { grid-column: 1 / -1; }
+
+    .beneficios li  { font-size: 19px; gap: 16px; padding: 12px 20px 12px 12px; }
+    .beneficios h3  { font-size: 20px; }
+    .bolinha        { width: 54px; font-size: 32px; }
+
+
+    /* Base */
+    .licao section + section { margin-top: 64px; }
+
+    .licao h2          { font-size: 33px; }
+    .licao section > p { font-size: 21px; }
+
+    .imagemLicao { border-radius: 26px; }
+
+    /* Blocos comuns */
+    .conteudoCuriosidade {
+        padding: 26px 28px;
+        border-radius: 28px;
+    }
+
+    .conteudoCuriosidade h3 { font-size: 24px; }
+    .conteudoCuriosidade p  { font-size: 24px; }
+
+    .conexaoPlantAmigo {
+        padding: 26px 30px;
+        border-radius: 28px;
+    }
+
+    .conteudoConexao h3 { font-size: 26px; }
+    .conteudoConexao p  { font-size: 22px; }
+
+    .finalLicao h3 { font-size: 28px; }
+    .finalLicao p  { font-size: 22px; }
+
+    /* Lição 1 */
+    .necessidadesPlanta { --pad-modulo: 32px; }
+
+    .partePlanta {
+        padding: 12px 22px;
+        font-size: 22px;
+    }
+
+    .necessidade     { padding: 22px 24px; }
+    .necessidade h3  { font-size: 24px; }
+    .necessidade p   { font-size: 21px; }
+
+    /* Lição 2 */
+    .comparacaoPlantas {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .plantaNecessidade {
+        padding: 22px 20px;
+    }
+
+    .plantaNecessidade + .plantaNecessidade {
+        border-top: none;
+        border-left: 1px solid var(--linha);
+    }
+
+    /* Lição 3 */
+    .processoFotossintese {
+        gap: 16px;
+        margin-top: 30px;
+    }
+
+    .ingredienteFotossintese,
+    .resultadoFotossintese {
+        min-width: 92px;
+        padding: 18px 14px;
+    }
+
+    .ingredienteFotossintese strong,
+    .resultadoFotossintese strong { font-size: 20px; }
+
+    .resultadoFotossintese small { font-size: 20px; }
+
+    .sinalFotossintese,
+    .maisFotossintese { font-size: 22px; }
+
+    .setaFotossintese { font-size: 29px; }
+
+    .explicacaoFotossintese { font-size: 15px; }
+
+    .dicaCacto p { font-size: 18px; }
+
+    .respostaDetalheCacto p { font-size: 19px; }
+
+    .galeriaCactos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .respostaDesafioCacto summary {
+        padding: 18px 22px;
+        font-size: 22px;
+    }
+
+    .respostaDesafioCacto > div p { font-size: 19px; }
+}
+
+
+/* ==========================================================
+   PÁGINA CONFIGURAÇÕES
+========================================================== */
+
+main:has(.cardConfiguracao) {
+    padding-top: clamp(20px, 5vh, 32px);
+    padding-bottom: clamp(32px, 8vh, 56px);
+}
+
+main:has(.cardConfiguracao) > * + * {
+    margin-top: clamp(18px, 5vw, 24px);
+}
+
+.descricaoConfiguracoes {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(20px, 5.8vw, 26px);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--tinta);
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.cardConfiguracao {
+    padding: var(--pad-modulo);
+
+    background-color: var(--painel);
+    border-radius: var(--raio-folha);
+    box-shadow: 0 0 0 2px var(--fio-painel);
+}
+
+.tituloCardConfiguracao {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: clamp(18px, 5vw, 24px);
+}
+
+.iconeTituloConfiguracao {
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    width: 48px;
+    height: 48px;
+
+    font-size: 26px;
+
+    border-radius: var(--raio-folha-pequena);
+}
+
+.iconeTituloConfiguracao--planta { background-color: #D4F0E1; color: #2F7A5C; }
+.iconeTituloConfiguracao--agua   { background-color: #D6EEF9; color: #2A87A8; }
+.iconeTituloConfiguracao--som    { background-color: var(--rosa); color: #9B3F76; }
+
+.tituloCardConfiguracao h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(18px, 5.2vw, 22px);
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--petroleo);
+}
+
+.tituloCardConfiguracao p {
+    margin-top: 2px;
+
+    font-size: clamp(13.5px, 3.7vw, 15px);
+    line-height: 1.4;
+    color: var(--texto-suave);
+}
+
+
+/* =========================
+   CAMPOS
+========================= */
+
+.campoConfiguracao {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campoConfiguracao + .campoConfiguracao {
+    margin-top: clamp(14px, 4vw, 18px);
+}
+
+.campoConfiguracao label {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(15px, 4.2vw, 17px);
+    font-weight: 600;
+    color: var(--tinta);
+}
+
+.campoConfiguracao input,
+.campoConfiguracao select {
+    width: 100%;
+    min-height: 52px;
+    padding: 12px 18px;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    color: var(--texto);
+
+    background-color: var(--card);
+    border: 2px solid #CBE3D6;
+    border-radius: 18px;
+
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campoConfiguracao input::placeholder {
+    color: #8A9A92;
+}
+
+.campoConfiguracao input:focus,
+.campoConfiguracao select:focus {
+    outline: none;
+
+    border-color: var(--menta-forte);
+    box-shadow: 0 0 0 4px rgba(159, 216, 192, 0.28);
+}
+
+.campoConfiguracao select {
+    -webkit-appearance: none;
+            appearance: none;
+
+    padding-right: 48px;
+    cursor: pointer;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232E2C28' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 18px;
+}
+
+/* itens da lista*/
+.campoConfiguracao select option {
+    min-height: 0;
+    padding: 8px 12px;
+
+    font-size: 16px;
+    color: var(--texto);
+    background-color: #FFFFFF;
+}
+
+.botaoSalvarConfiguracao {
+    width: 100%;
+    margin-top: clamp(20px, 5vw, 26px);
+    padding: 16px 20px;
+
+    font-size: clamp(16px, 4.4vw, 18px);
+
+    border-radius: 18px;
+}
+
+
+/* =========================
+   MENSAGEM DE CONFIRMAÇÃO
+========================= */
+
+.mensagemConfiguracao {
+    font-size: clamp(14px, 3.8vw, 15px);
+    font-weight: 700;
+    text-align: center;
+    color: var(--verde-escuro);
+}
+
+.mensagemConfiguracao:not(:empty) {
+    margin-top: 14px;
+    padding: 10px 14px;
+
+    background-color: var(--fundo-acerto);
+    border-radius: 14px;
+}
+
+.mensagemConfiguracao.erro {
+    color: var(--marrom-atencao);
+    background-color: var(--painel-atencao);
+}
+
+
+/* =========================
+   MODO DE IRRIGAÇÃO
+========================= */
+
+.cardConfiguracao .opcoesIrrigacao {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.opcaoIrrigacao {
+    position: relative;
+    display: block;
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.opcaoIrrigacao input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.conteudoOpcaoIrrigacao {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 14px 16px;
+
+    background-color: var(--fundo-item);
+    border: 2px solid transparent;
+    border-radius: 18px;
+
+    transition: border-color 0.2s ease, background-color 0.2s ease,
+                box-shadow 0.2s ease, transform 0.12s ease;
+}
+
+.opcaoIrrigacao:hover .conteudoOpcaoIrrigacao {
+    border-color: rgba(159, 216, 192, 0.6);
+}
+
+.opcaoIrrigacao:active .conteudoOpcaoIrrigacao {
+    transform: scale(0.99);
+}
+
+.iconeOpcao {
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    width: 46px;
+    height: 46px;
+
+    font-size: 24px;
+    color: var(--tinta);
+
+    background-color: var(--card);
+    border-radius: var(--raio-folha-pequena);
+
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.conteudoOpcaoIrrigacao > span:nth-child(2) {
+    flex: 1;
+    min-width: 0;
+}
+
+.conteudoOpcaoIrrigacao strong {
+    display: block;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(16px, 4.4vw, 18px);
+    font-weight: 600;
+    color: var(--tinta);
+}
+
+.conteudoOpcaoIrrigacao small {
+    display: block;
+    margin-top: 2px;
+
+    font-size: clamp(13px, 3.6vw, 14.5px);
+    line-height: 1.4;
+    color: var(--texto-suave);
+}
+
+.conteudoOpcaoIrrigacao::after {
+    content: "";
+    flex-shrink: 0;
+
+    width: 24px;
+    height: 24px;
+
+    background-color: var(--card);
+    border: 2px solid #B9D3C6;
+    border-radius: 50%;
+
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* escolhida */
+.opcaoIrrigacao input:checked + .conteudoOpcaoIrrigacao {
+    background-color: var(--fundo-acerto);
+    border-color: var(--menta-forte);
+    box-shadow: 0 0 0 4px rgba(159, 216, 192, 0.25);
+}
+
+.opcaoIrrigacao input:checked + .conteudoOpcaoIrrigacao .iconeOpcao {
+    background-color: #2F7A5C;
+    color: #FFFFFF;
+}
+
+.opcaoIrrigacao input:checked + .conteudoOpcaoIrrigacao::after {
+    background-color: #2F7A5C;
+    border-color: #2F7A5C;
+
+    /* ✓ desenhado em SVG branco */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 14px;
+}
+
+.opcaoIrrigacao input:focus-visible + .conteudoOpcaoIrrigacao {
+    outline: 3px solid var(--menta-forte);
+    outline-offset: 3px;
+}
+
+
+/* =========================
+   SONS
+========================= */
+
+.linhaSom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 16px;
+
+    background-color: var(--fundo-item);
+    border-radius: 18px;
+}
+
+.informacaoSom strong {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(16px, 4.4vw, 18px);
+    font-weight: 600;
+    color: var(--tinta);
+}
+
+.informacaoSom p {
+    margin-top: 2px;
+
+    font-size: clamp(13px, 3.6vw, 14.5px);
+    line-height: 1.4;
+    color: var(--texto-suave);
+}
+
+.interruptor {
+    position: relative;
+    flex-shrink: 0;
+
+    display: block;
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.interruptor input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.trilhoInterruptor {
+    position: relative;
+    display: block;
+
+    width: 62px;
+    height: 36px;
+
+    background-color: #B9C9C0;
+    border-radius: 999px;
+
+    transition: background-color 0.2s ease;
+}
+
+/* bolinha que desliza */
+.trilhoInterruptor::after {
+    content: "";
+
+    position: absolute;
+    top: 4px;
+    left: 4px;
+
+    width: 28px;
+    height: 28px;
+
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(30, 59, 62, 0.25);
+
+    transition: transform 0.2s ease;
+}
+
+.interruptor input:checked + .trilhoInterruptor {
+    background-color: #2F7A5C;
+}
+
+.interruptor input:checked + .trilhoInterruptor::after {
+    transform: translateX(26px);
+}
+
+.interruptor input:focus-visible + .trilhoInterruptor {
+    outline: 3px solid var(--menta-forte);
+    outline-offset: 3px;
+}
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
+.rodapeConfiguracoes {
+    padding-top: 6px;
+
+    font-size: clamp(14px, 3.8vw, 15px);
+    font-weight: 600;
+    text-align: center;
+    color: var(--texto-suave);
+}
+
+
+/* =========================
+   TABLET E TELAS GRANDES
+========================= */
+
+@media (min-width: 700px) {
+
+    .descricaoConfiguracoes {
+        font-size: 32px;
+    }
+
+    .iconeTituloConfiguracao {
+        width: 60px;
+        height: 60px;
+        font-size: 32px;
+    }
+
+    .tituloCardConfiguracao h2 {
+        font-size: 28px;
+    }
+
+    .tituloCardConfiguracao p {
+        font-size: 18px;
+    }
+
+    .campoConfiguracao label {
+        font-size: 20px;
+    }
+
+    .campoConfiguracao input,
+    .campoConfiguracao select {
+        min-height: 60px;
+        font-size: 18px;
+    }
+
+    /* as duas opções ficam lado a lado */
+    .cardConfiguracao .opcoesIrrigacao {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .conteudoOpcaoIrrigacao {
+        padding: 18px 20px;
+    }
+
+    .iconeOpcao {
+        width: 56px;
+        height: 56px;
+        font-size: 30px;
+    }
+
+    .conteudoOpcaoIrrigacao strong,
+    .informacaoSom strong {
+        font-size: 22px;
+    }
+
+    .conteudoOpcaoIrrigacao small,
+    .informacaoSom p {
+        font-size: 17px;
+    }
+
+    .botaoSalvarConfiguracao {
+        padding: 20px;
+        font-size: 22px;
+    }
+
+    .mensagemConfiguracao {
+        font-size: 17px;
+    }
+
+    .rodapeConfiguracoes {
+        font-size: 18px;
+    }
+}
+
+/* ==========================================================
+   PÁGINA LOJA
+========================================================== */
+
+
+/* =========================
+   MASCOTE COM CHAPÉU
+========================= */
+
+.mascoteVisual {
+    position: relative;
+
+    aspect-ratio: var(--proporcao);
+}
+
+.mascoteCorpo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.mascoteChapeu {
+    position: absolute;
+    left: calc((var(--x) + var(--dx, 0) * var(--cabeca)) * 100%);
+    top: calc(var(--topo) * 100%);
+
+    width: calc(var(--cabeca) * var(--escala) * 100%);
+    height: auto;
+
+    transform: translate(-50%, calc(-100% + var(--afundar, 0) * 1%)) rotate(var(--rot, 0deg));
+    transform-origin: 50% 100%;
+
+    pointer-events: none;
+}
+
+.mascoteChapeu[hidden] {
+    display: none;
+}
+
+/* pulinho quando troca de chapéu */
+.mascoteChapeu.troca {
+    animation: chapeuPula 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.mascoteCorpo.troca {
+    animation: mascotePula 0.4s ease-out;
+}
+
+@keyframes mascotePula {
+    0%   { transform: scale(0.96) translateY(4px); }
+    55%  { transform: scale(1.03) translateY(-4px); }
+    100% { transform: scale(1) translateY(0); }
+}
+
+@keyframes chapeuPula {
+    0%   { scale: 0.4;  translate: 0 -18px; opacity: 0; }
+    60%  { scale: 1.08; translate: 0 2px;   opacity: 1; }
+    100% { scale: 1;    translate: 0 0;     opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mascoteChapeu.troca,
+    .mascoteCorpo.troca { animation: none; }
+}
+
+
+/* =========================
+   ESTRUTURA DA PÁGINA
+========================= */
+
+.paginaChapeus {
+    padding-top: clamp(16px, 4vw, 24px);
+}
+
+.paginaChapeus > * + * {
+    margin-top: clamp(18px, 5vw, 26px);
+}
+
+
+/* =========================
+   PALCO DO MASCOTE
+========================= */
+
+.palcoMascote {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    display: grid;
+    justify-items: center;
+    gap: 14px;
+
+    padding: clamp(26px, 7vw, 36px) 20px clamp(18px, 5vw, 24px);
+
+    text-align: center;
+
+    background-color: var(--painel);
+    border-radius: var(--raio-folha);
+    box-shadow: 0 0 0 2px var(--fio-painel);
+}
+
+/* brilho atrás do mascote */
+.palcoMascote::before {
+    content: "";
+
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    z-index: -1;
+
+    width: min(78%, 330px);
+    aspect-ratio: 1;
+
+    background: radial-gradient(circle, #90e5ff 0%, #e0f5ff 52%, transparent 72%);
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+#mascoteVisual {
+    width: clamp(190px, 56vw, 250px);
+
+    margin-top: clamp(40px, 11vw, 52px);
+}
+
+/* nome do chapéu escolhido */
+.nomeChapeuAtual {
+    padding: 7px 18px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(15px, 4.2vw, 17px);
+    font-weight: 600;
+    color: var(--petroleo);
+
+    background-color: var(--fundo-item);
+    border-radius: 999px;
+}
+
+
+/* =========================
+   ESCOLHA DOS CHAPÉUS
+========================= */
+
+.escolhaChapeus h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(18px, 5.2vw, 22px);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--tinta);
+}
+
+.opcoesChapeus {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(12px, 4vw, 18px);
+
+    margin-top: clamp(16px, 4vw, 20px);
+}
+
+.cardChapeu {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    align-self: stretch;
+    justify-content: flex-start;
+
+    padding: 16px 12px 14px;
+
+    font-family: inherit;
+    text-align: center;
+    color: inherit;
+
+    background-color: var(--painel);
+    border: 2px solid transparent;
+    border-radius: var(--raio-folha);
+    box-shadow: 0 0 0 2px var(--fio-painel);
+    cursor: pointer;
+
+    transition: transform 0.15s ease, border-color 0.2s ease,
+                background-color 0.2s ease, box-shadow 0.2s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.cardChapeu:hover  { transform: translateY(-2px); }
+.cardChapeu:active { transform: translateY(0) scale(0.98); }
+
+.cardChapeu:focus-visible {
+    outline: 3px solid var(--menta-forte);
+    outline-offset: 3px;
+}
+
+/* quadrado onde o chapéu aparece */
+.miniaturaChapeu {
+    position: relative;
+
+    width: 100%;
+    height: clamp(96px, 30vw, 124px);
+
+    background-color: var(--fundo-item);
+    border-radius: var(--raio-folha-pequena);
+
+    transition: background-color 0.2s ease;
+}
+
+.miniaturaChapeu img {
+    position: absolute;
+    inset: 14px;
+
+    width: calc(100% - 28px);
+    height: calc(100% - 28px);
+
+    object-fit: contain;
+}
+
+.cardChapeu h3 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(15px, 4.2vw, 17px);
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--tinta);
+}
+
+/* escolhido */
+.cardChapeu.selecionado {
+    border-color: var(--menta-forte);
+    background-color: var(--fundo-acerto);
+    box-shadow: 0 0 0 4px rgba(159, 216, 192, 0.3);
+}
+
+.cardChapeu.selecionado .miniaturaChapeu {
+    background-color: var(--painel);
+}
+
+.cardChapeu.selecionado::after {
+    content: "";
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    width: 26px;
+    height: 26px;
+
+    background-color: #2F7A5C;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 14px;
+
+    border-radius: 50%;
+}
+
+
+/* =========================
+   BARRA DE SALVAR
+========================= */
+
+.barraSalvarChapeu {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 22px var(--gutter) max(16px, env(safe-area-inset-bottom, 0px));
+
+    background: linear-gradient(to top, var(--fundo-app) 62%, transparent);
+}
+
+.btnSalvarChapeu {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+
+    font-size: clamp(16px, 4.4vw, 18px);
+
+    border-radius: 18px;
+}
+
+/* nada para salvar */
+.btnSalvarChapeu:disabled {
+    cursor: default;
+
+    color: #5E7A6E;
+    background: #D9E8E0;
+    box-shadow: none;
+    transform: none;
+}
+
+/* a mensagem fica acima do botão */
+.barraSalvarChapeu .mensagemConfiguracao:not(:empty) {
+    margin: 0 0 12px;
+}
+
+
+/* =========================
+   PONTOS DA CRIANÇA
+========================= */
+
+.pontosLoja {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 14px 6px 10px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(14px, 3.9vw, 16px);
+    font-weight: 600;
+    color: var(--tinta);
+
+    background-color: var(--fundo-item);
+    border-radius: 999px;
+}
+
+.pontosLoja .icone {
+    font-size: 1.3em;
+    color: var(--petroleo);
+}
+
+.pontosLoja span {
+    font-weight: 700;
+}
+
+
+/* =========================
+   CHAPÉU AINDA NÃO COMPRADO
+========================= */
+
+.seloPreco {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    padding: 4px 10px 4px 7px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--petroleo);
+
+    background-color: #FFFFFF;
+    border-radius: 999px;
+    box-shadow: 0 0 0 2px var(--fio-painel);
+}
+
+.seloPreco .icone {
+    font-size: 1.25em;
+    color: #2A87A8;
+}
+
+/* já é seu: o selo some */
+.cardChapeu:not(.bloqueado) .seloPreco {
+    display: none;
+}
+
+
+/* =========================
+   CONFIRMAR A COMPRA
+========================= */
+
+.dialogoCompra {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    height: fit-content;
+
+    width: min(90vw, 340px);
+    padding: 26px 22px 22px;
+
+    text-align: center;
+    color: var(--texto);
+
+    background-color: var(--painel);
+    border: none;
+    border-radius: var(--raio-folha);
+    box-shadow: 0 0 0 2px var(--fio-painel), 0 20px 50px rgba(30, 59, 62, 0.35);
+}
+
+.dialogoCompra::backdrop {
+    background-color: rgba(30, 59, 62, 0.5);
+}
+
+.dialogoCompra[open] {
+    animation: dialogoEntra 0.25s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+@keyframes dialogoEntra {
+    from { opacity: 0; transform: scale(0.92) translateY(10px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.dialogoMiniatura {
+    display: grid;
+    place-items: center;
+
+    width: 128px;
+    height: 96px;
+    margin: 0 auto 20px;
+    padding: 12px;
+
+    background-color: var(--fundo-item);
+    border-radius: var(--raio-folha-pequena);
+}
+
+.dialogoMiniatura img {
+    max-width: 100%;
+    max-height: 100%;
+
+    object-fit: contain;
+}
+
+.dialogoCompra h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--petroleo);
+}
+
+.dialogoCompra p {
+    margin-top: 6px;
+
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--texto-suave);
+}
+
+.dialogoBotoes {
+    display: grid;
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.dialogoBotoes .btnSalvarChapeu {
+    padding: 14px 18px;
+    font-size: 17px;
+}
+
+.btnSecundarioChapeu {
+    padding: 12px 18px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--tinta);
+
+    background: transparent;
+    border: 2px solid var(--fio-painel);
+    border-radius: 18px;
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btnSecundarioChapeu:hover { background-color: var(--fundo-item); }
+
+.btnSecundarioChapeu:focus-visible {
+    outline: 3px solid var(--menta-forte);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dialogoCompra[open] { animation: none; }
+}
+
+
+/* =========================
+   TABLET E TELAS GRANDES
+========================= */
+
+@media (min-width: 700px) {
+
+    #mascoteVisual { width: 320px; }
+
+    .nomeChapeuAtual { font-size: 20px; }
+
+    .escolhaChapeus h2 { font-size: 28px; }
+
+    .opcoesChapeus {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+    }
+
+    .miniaturaChapeu { height: 140px; }
+
+    .cardChapeu h3 { font-size: 19px; }
+
+    .btnSalvarChapeu {
+        padding: 20px;
+        font-size: 22px;
+    }
+}
+
+
+/* ==========================================================
+   QUIZ
+========================================================== */
+
+.quiz {
+    padding-bottom: clamp(32px, 8vh, 56px);
+}
+
+.cabecalhoQuiz {
+    margin-top: clamp(20px, 5vh, 32px);
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 12px;
+    row-gap: clamp(10px, 2.5vw, 14px);
+}
+
+.cabecalhoQuiz.oculto {
+    display: none;
+}
+
+
+/* =========================
+   PROGRESSO E PONTOS
+========================= */
+
+.progressoQuiz {
+    grid-column: 1 / -1;
+
+    height: 8px;
+
+    background-color: var(--trilho);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progressoBarra {
+    height: 100%;
+    width: 0%;
+
+    background: linear-gradient(90deg, #8BDCF7, #9BE8C6);
+    border-radius: 999px;
+
+    transition: width 0.4s ease;
+}
+
+.numeroQuiz {
+    grid-column: 1;
+    align-self: center;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(13px, 3.6vw, 14.5px);
+    font-weight: 600;
+    color: var(--texto-suave);
+}
+
+.pontosQuiz {
+    grid-column: 2;
+    align-self: center;
+
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(13px, 3.6vw, 14.5px);
+    color: var(--tinta);
+}
+
+.pontosQuiz #pontosQuiz {
+    font-size: clamp(15px, 4.2vw, 17px);
+    font-weight: 700;
+}
+
+
+/* =========================
+   PERGUNTA E OPÇÕES
+========================= */
+
+.perguntaQuiz {
+    margin-top: clamp(20px, 5.5vw, 28px);
+}
+
+.perguntaQuiz.oculto {
+    display: none;
+}
+
+.perguntaQuiz h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(18px, 5vw, 21px);
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--texto);
+}
+
+.opcoesQuiz {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 2.8vw, 12px);
+
+    margin-top: clamp(18px, 4.5vw, 22px);
+}
+
+.opcaoQuiz {
+    background-color: #FFF8F2;
+}
+
+.opcaoQuiz::before {
+    content: "";
+    flex-shrink: 0;
+
+    width: 7px;
+    height: 7px;
+
+    background-color: var(--menta-forte);
+    border-radius: 50%;
+
+    transition: opacity 0.15s ease;
+}
+
+.opcaoQuiz:disabled:not(.correta):not(.incorreta) {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.opcaoQuiz.correta,
+.opcaoQuiz.incorreta {
+    cursor: default;
+}
+
+.opcaoQuiz.correta {
+    background-color: var(--menta-forte);
+    color: var(--verde-escuro);
+}
+
+.opcaoQuiz.incorreta {
+    background-color: var(--pessego);
+    color: var(--marrom-atencao);
+}
+
+.opcaoQuiz.correta::before,
+.opcaoQuiz.incorreta::before {
+    opacity: 0;
+}
+
+.opcaoQuiz.correta::after,
+.opcaoQuiz.incorreta::after {
+    margin-left: auto;
+    font-weight: 700;
+}
+
+.opcaoQuiz.correta::after   { content: "✓"; }
+.opcaoQuiz.incorreta::after { content: "✕"; }
+
+.feedbackQuiz {
+    display: none;
+
+    margin-top: clamp(16px, 4vw, 20px);
+    padding: clamp(16px, 4.5vw, 20px);
+
+    border-radius: 20px;
+}
+
+.feedbackQuiz.mostrar {
+    display: block;
+}
+
+.feedbackQuiz.acerto {
+    background-color: var(--fundo-acerto);
+}
+
+.feedbackQuiz.erro {
+    background-color: var(--painel-atencao);
+}
+
+.feedbackQuiz h3 {
+    margin-bottom: 4px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(15.5px, 4.2vw, 17px);
+    font-weight: 700;
+}
+
+.feedbackQuiz.acerto h3 { color: var(--verde-escuro); }
+.feedbackQuiz.erro h3   { color: var(--marrom-atencao); }
+
+.feedbackQuiz p {
+    font-size: clamp(13.5px, 3.6vw, 15px);
+    line-height: 1.5;
+    color: var(--texto-suave);
+}
+
+
+/* =========================
+   BOTÕES PRÓXIMA E CONTINUAR
+========================= */
+
+.btnProxima,
+.btnContinuar {
+    margin-top: clamp(20px, 5vw, 26px);
+}
+
+.btnProxima {
+    display: none;
+}
+
+.btnProxima.mostrar {
+    display: flex;
+}
+
+
+/* =========================
+   RESULTADO FINAL
+========================= */
+
+.resultadoQuiz {
+    display: none;
+    text-align: center;
+}
+
+.resultadoQuiz.mostrar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: clamp(28px, 7vh, 44px);
+}
+
+.resultadoMascote {
+    position: relative;
+    isolation: isolate;
+
+    display: grid;
+    place-items: center;
+
+    width: clamp(96px, 26vw, 120px);
+    aspect-ratio: 1;
+    margin-bottom: clamp(16px, 4vw, 20px);
+
+    font-size: clamp(44px, 12vw, 56px);
+}
+
+.resultadoMascote::before {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    background: radial-gradient(circle, var(--menta) 0%, var(--agua) 60%, transparent 80%);
+    border-radius: 50%;
+
+    filter: blur(28px);
+    opacity: 0.85;
+}
+
+.resultadoQuiz h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(22px, 6.2vw, 27px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--tinta);
+}
+
+.resultadoQuiz > p {
+    margin-top: 8px;
+    margin-bottom: clamp(20px, 5vw, 26px);
+
+    max-width: 34ch;
+
+    font-size: clamp(14px, 3.8vw, 16px);
+    line-height: 1.5;
+    color: var(--texto-suave);
+}
+
+.pontuacaoFinal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+
+    padding: clamp(14px, 4vw, 18px) clamp(22px, 6vw, 30px);
+    margin-bottom: clamp(22px, 5.5vw, 28px);
+
+    background-color: var(--fundo-acerto);
+    border-radius: 20px;
+}
+
+.pontuacaoFinal span {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(13px, 3.6vw, 14px);
+    color: var(--texto-suave);
+}
+
+.pontuacaoFinal strong {
+    margin-top: 2px;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(20px, 5.6vw, 24px);
+    font-weight: 700;
+    color: var(--verde-escuro);
+}
+
+
+/* =========================
+   TABLET E TELAS GRANDES
+========================= */
+
+@media (min-width: 700px) {
+
+    .perguntaQuiz h2 { font-size: 24px; }
+
+    .feedbackQuiz {
+        padding: 22px 26px;
+        border-radius: 24px;
+    }
+
+    .feedbackQuiz h3 { font-size: 20px; }
+    .feedbackQuiz p  { font-size: 18px; }
+
+    .resultadoQuiz h2  { font-size: 30px; }
+    .resultadoQuiz > p { font-size: 18px; }
+
+    .pontuacaoFinal { padding: 18px 34px; }
+    .pontuacaoFinal strong { font-size: 26px; }
+}
+
+
+
+
+/* CANTOS DE FOLHA */
+
+.explorarPlanta,
+.umidadeInterativa,
+.cuidadosInterativos,
+.explorarCacto,
+.desafioCacto,
+.fotossinteseLicao,
+.conhecendoCactos,
+.cuidadosCacto,
+.perguntaQuiz,
+.necessidadesPlanta,
+.aguaPlanta,
+.necessidadeAgua,
+.necessidadeLuz,
+.cuidadosImportantes,
+.guiaCacto,
+.tiposCactos,
+.sinaisPlanta,
+.imagemLicao {
+    border-radius: var(--raio-folha);
+}
+
+.numeroLicao,
+.imagemPlanta {
+    border-radius: var(--raio-folha-pequena);
+}

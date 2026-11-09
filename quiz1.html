@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../CSS/style.css">
+
+    <title>Quiz 1 - Descobrindo as Plantas</title>
+</head>
+
+<body>
+
+    <header>
+
+        <a href="../LICOES/licao1.html" class="voltar">
+            ← Lição
+        </a>
+
+        <h1 class="titulo">
+            Meu PlantAmigo
+        </h1>
+
+    </header>
+
+
+    <main class="quiz">
+
+        <!-- CABEÇALHO DO QUIZ -->
+
+        <section class="cabecalhoQuiz">
+
+            <div class="progressoQuiz">
+                <div id="progressoBarra" class="progressoBarra"></div>
+            </div>
+
+            <span class="numeroQuiz">
+                Pergunta <span id="numeroPergunta">1</span> de 5
+            </span>
+
+            <span class="pontosQuiz">
+                ⭐ <span id="pontosQuiz">0</span>
+            </span>
+
+        </section>
+
+
+        <!-- PERGUNTA -->
+
+        <section class="perguntaQuiz">
+
+            <h2 id="pergunta">
+                Qual é uma das funções da raiz?
+            </h2>
+
+            <div class="opcoesQuiz">
+
+                <button class="opcaoQuiz" type="button" data-resposta="A">
+                    Produzir flores
+                </button>
+
+                <button class="opcaoQuiz" type="button" data-resposta="B">
+                    Absorver água e nutrientes
+                </button>
+
+                <button class="opcaoQuiz" type="button" data-resposta="C">
+                    Produzir frutos
+                </button>
+
+                <button class="opcaoQuiz" type="button" data-resposta="D">
+                    Receber luz
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEEDBACK -->
+
+        <section id="feedbackQuiz" class="feedbackQuiz">
+
+            <h3 id="tituloFeedback"></h3>
+
+            <p id="textoFeedback"></p>
+
+        </section>
+
+
+        <!-- PRÓXIMA PERGUNTA -->
+
+        <button id="btnProxima" class="btnProxima" type="button">
+            Próxima
+        </button>
+
+
+        <!-- RESULTADO FINAL -->
+
+        <section id="resultadoQuiz" class="resultadoQuiz">
+
+            <div class="resultadoMascote">
+                🌱
+            </div>
+
+            <h2>Quiz concluído!</h2>
+
+            <p id="mensagemResultado">
+                Você terminou o quiz!
+            </p>
+
+            <div class="pontuacaoFinal">
+
+                <span>Você ganhou</span>
+
+                <strong>
+                    ⭐ <span id="pontosFinais">0</span> pontos
+                </strong>
+
+            </div>
+
+            <a href="../aprender.html" class="btnContinuar">
+                Continuar
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <script src="../../JS/QUIZZES/quiz1.js"></script>
+
+</body>
+
+</html>
