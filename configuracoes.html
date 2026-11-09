@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../CSS/style.css">
+
+    <title>Aprender</title>
+
+</head>
+
+<body>
+
+    <header>
+        <a href="../HTML/home.html" class="voltar">← Início</a>
+
+        <h1 class="titulo">Meu PlantAmigo</h1>
+    </header>
+
+    <main>
+        <p class="descricaoConfiguracoes">
+            Personalize o cuidado com a sua plantinha!
+        </p>
+
+        <!-- INFORMAÇÕES DA PLANTA -->
+        <section class="cardConfiguracao">
+
+            <div class="tituloCardConfiguracao">
+                <span class="iconeTituloConfiguracao iconeTituloConfiguracao--planta"><i class="icone icone-planta"></i></span>
+                <div>
+                    <h2>Minha planta</h2>
+                    <p>Atualize as informações da sua plantinha.</p>
+                </div>
+            </div>
+
+            <form id="formPlanta">
+
+                <div class="campoConfiguracao">
+                    <label for="nomePlanta">Nome da planta</label>
+
+                    <input
+                        type="text"
+                        id="nomePlanta"
+                        name="nomePlanta"
+                        placeholder="Digite o novo nome da sua plantinha"
+                        maxlength="30"
+                        required
+                    >
+                </div>
+
+                <div class="campoConfiguracao">
+                    <label for="tipoPlanta">Categoria da planta</label>
+
+                    <select id="tipoPlanta" name="tipoPlanta" required>
+                        <option value="">Selecione uma categoria</option>
+                        <option value="cactos">Cactos</option>
+                        <option value="suculentas">Suculentas</option>
+                        <option value="tropicais">Tropicais</option>
+                        <option value="floridas">Plantas floridas</option>
+                        <option value="samambaias">Samambaias</option>
+                        <option value="orquideas">Orquídeas</option>
+                        <option value="temperos">Temperos</option>
+                        <option value="frutiferas">Frutíferas</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="botaoSalvarConfiguracao">
+                    Salvar informações
+                </button>
+
+                <p
+                    id="mensagemPlanta"
+                    class="mensagemConfiguracao"
+                    aria-live="polite"
+                ></p>
+
+            </form>
+
+        </section>
+
+        <!-- MODO DE IRRIGAÇÃO -->
+        <section class="cardConfiguracao">
+
+            <div class="tituloCardConfiguracao">
+                <span class="iconeTituloConfiguracao iconeTituloConfiguracao--agua"><i class="icone icone-gota"></i></span>
+                <div>
+                    <h2>Modo de irrigação</h2>
+                    <p>Escolha como sua planta receberá água.</p>
+                </div>
+            </div>
+
+            <div class="opcoesIrrigacao">
+
+                <label class="opcaoIrrigacao">
+                    <input
+                        type="radio"
+                        name="modoIrrigacao"
+                        id="irrigacaoAutomatica"
+                        value="automatica"
+                        checked
+                    >
+
+                    <span class="conteudoOpcaoIrrigacao">
+                        <span class="iconeOpcao"><i class="icone icone-robo"></i></span>
+
+                        <span>
+                            <strong>Automática</strong>
+                            <small>
+                                O sistema controla a irrigação
+                                conforme a umidade configurada.
+                            </small>
+                        </span>
+                    </span>
+                </label>
+
+                <label class="opcaoIrrigacao">
+                    <input
+                        type="radio"
+                        name="modoIrrigacao"
+                        id="irrigacaoManual"
+                        value="manual"
+                    >
+
+                    <span class="conteudoOpcaoIrrigacao">
+                        <span class="iconeOpcao"><i class="icone icone-mao"></i></span>
+
+                        <span>
+                            <strong>Manual</strong>
+                            <small>
+                                Você solicita quando deseja
+                                irrigar sua planta.
+                            </small>
+                        </span>
+                    </span>
+                </label>
+
+            </div>
+
+            <button
+                type="button"
+                id="btnSalvarIrrigacao"
+                class="botaoSalvarConfiguracao"
+            >
+                Salvar modo de irrigação
+            </button>
+
+            <p
+                id="mensagemIrrigacao"
+                class="mensagemConfiguracao"
+                aria-live="polite"
+            ></p>
+
+        </section>
+
+        <!-- SONS DA PLANTA -->
+        <section class="cardConfiguracao">
+
+            <div class="tituloCardConfiguracao">
+                <span class="iconeTituloConfiguracao iconeTituloConfiguracao--som"><i class="icone icone-som"></i></span>
+                <div>
+                    <h2>Sons da planta</h2>
+                    <p>Escolha se o aplicativo poderá reproduzir sons.</p>
+                </div>
+            </div>
+
+            <div class="linhaSom">
+
+                <div class="informacaoSom">
+                    <strong>Ativar sons</strong>
+
+                    <p>
+                        Permite que o mascote reproduza
+                        sons.
+                    </p>
+                </div>
+
+                <label class="interruptor" for="sonsAtivados">
+                    <input
+                        type="checkbox"
+                        id="sonsAtivados"
+                        name="sonsAtivados"
+                        checked
+                    >
+
+                    <span class="trilhoInterruptor"></span>
+                </label>
+
+            </div>
+
+            <button
+                type="button"
+                id="btnSalvarSons"
+                class="botaoSalvarConfiguracao"
+            >
+                Salvar preferência de sons
+            </button>
+
+            <p
+                id="mensagemSons"
+                class="mensagemConfiguracao"
+                aria-live="polite"
+            ></p>
+
+        </section>
+
+        <p class="rodapeConfiguracoes">
+            Pequenas mudanças ajudam sua plantinha a crescer feliz!
+        </p>
+
+    </main>
+</body>
+
+<script src="../JS/configuracoes.js"></script>
+</html>
