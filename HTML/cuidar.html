@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <title>Cuidar</title>
+</head>
+
+<body>
+
+    <header>
+        <h1 class="titulo">Meu PlantAmigo</h1>
+        <a href="configuracoes.html" class="configuracoes">⚙️</a>
+    </header>
+
+    <main>
+        <section class="tipo_planta">
+            <p>Tipo da planta:</p>
+            <p id="tipo_planta">Planta tropical</p>
+            <p id="dica">Essa planta gosta bastante de água!</p>
+        </section>
+
+        <section class="estado_planta">
+            <div class="infoReservatorioCuidar">
+                <h2>Reservatório</h2>
+                <div class="barraReservatorioCuidar">
+                    <div id="nivelReservatorioCuidar"></div>
+                </div>
+                <p id="porcentagemReservatorioCuidar">98%</p>
+                <p id="alertaReservatorioCuidar">Nível do reservatório adequado</p>
+            </div>
+
+            <div class="infoUmidade">
+                <h2>Umidade</h2>
+                <div class="barraUmidade">
+                    <div id="nivelUmidade"></div>
+                </div>
+
+                <p id="porcentagemUmidade">68%</p>
+
+                <p id="alerta_umidade">Faixa adequada: 50–70%</p>
+            </div>
+        </section>
+
+        <section class="irrigacao">
+            <div class="regar">
+                <button id="btnRegar">Regar agora</button>
+            </div>
+
+            <div class="statusIrrigacao">
+                <p>Irrigação automática</p>
+                <p id="irrigacaoAutomatica">Ativa</p>
+            </div>
+        </section>
+
+        <section class="historico">
+            <h2>Histórico de regas</h2>
+            <div id="listaHistorico">
+                <!-- O JavaScript vai colocar as regas aqui -->
+            </div>
+        </section>
+
+    </main>
+    <nav>
+        <a href="home.html">Início</a>
+        <a href="cuidar.html">Cuidar</a>
+        <a href="mascote.html">Mascote</a>
+        <a href="aprender.html">Aprender</a>
+    </nav>
+    
+    <script src="../JS/cuidar.js"></script>
+</body>
+</html>
