@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../CSS/style.css">
+
+    <title>Quiz 5 - Conhecendo os Cactos</title>
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <a href="../LICOES/licao5.html" class="voltar">
+            ← Lição
+        </a>
+
+        <h1 class="titulo">
+            Meu PlantAmigo
+        </h1>
+
+    </header>
+
+
+    <main class="quiz">
+
+
+        <!-- CABEÇALHO DO QUIZ -->
+
+        <section class="cabecalhoQuiz">
+
+            <div class="progressoQuiz">
+
+                <div
+                    id="progressoBarra"
+                    class="progressoBarra"
+                ></div>
+
+            </div>
+
+
+            <span class="numeroQuiz">
+
+                Pergunta
+                <span id="numeroPergunta">1</span>
+                de 5
+
+            </span>
+
+
+            <span class="pontosQuiz">
+
+                ⭐
+                <span id="pontosQuiz">0</span>
+
+            </span>
+
+        </section>
+
+
+        <!-- PERGUNTA -->
+
+        <section class="perguntaQuiz">
+
+            <h2 id="pergunta">
+
+                Por que muitos cactos possuem um caule grosso e carnudo?
+
+            </h2>
+
+
+            <div class="opcoesQuiz">
+
+
+                <button
+                    class="opcaoQuiz"
+                    type="button"
+                    data-resposta="A"
+                >
+                    Para armazenar água
+                </button>
+
+
+                <button
+                    class="opcaoQuiz"
+                    type="button"
+                    data-resposta="B"
+                >
+                    Para absorver mais luz
+                </button>
+
+
+                <button
+                    class="opcaoQuiz"
+                    type="button"
+                    data-resposta="C"
+                >
+                    Para produzir mais espinhos
+                </button>
+
+
+                <button
+                    class="opcaoQuiz"
+                    type="button"
+                    data-resposta="D"
+                >
+                    Para manter o solo úmido
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- FEEDBACK -->
+
+        <section
+            id="feedbackQuiz"
+            class="feedbackQuiz"
+        >
+
+            <h3 id="tituloFeedback"></h3>
+
+            <p id="textoFeedback"></p>
+
+        </section>
+
+
+        <!-- PRÓXIMA PERGUNTA -->
+
+        <button
+            id="btnProxima"
+            class="btnProxima"
+            type="button"
+        >
+            Próxima
+        </button>
+
+
+        <!-- RESULTADO FINAL -->
+
+        <section
+            id="resultadoQuiz"
+            class="resultadoQuiz"
+        >
+
+
+            <div class="resultadoMascote">
+                🌵
+            </div>
+
+
+            <h2>
+                Quiz concluído!
+            </h2>
+
+
+            <p id="mensagemResultado">
+                Você terminou o quiz!
+            </p>
+
+
+            <div class="pontuacaoFinal">
+
+                <span>
+                    Você ganhou
+                </span>
+
+
+                <strong>
+
+                    ⭐
+                    <span id="pontosFinais">0</span>
+                    pontos
+
+                </strong>
+
+            </div>
+
+
+            <a
+                href="../aprender.html"
+                class="btnContinuar"
+            >
+                Continuar
+            </a>
+
+
+        </section>
+
+
+    </main>
+
+
+    <script src="../../JS/QUIZZES/quiz5.js"></script>
+
+
+</body>
+
+</html>
